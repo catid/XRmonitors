@@ -64,16 +64,20 @@ Enjoy your new virtual monitors!
 
 Requires: Visual Studio 2019
 
+```
 Clone repo with git: 
 git clone https://github.com/catid/XRmonitors.git
 cd XRmonitors
 git submodule update --init --recursive
+```
 
 Generate your own private key to sign the installer and place it under signing/DigiCertPrivateKey.pfx
 
+```
 Open XRmonitors.sln with Visual Studio 2019
 Select build mode: Release x64
 Build Menu > Rebuild Solution
+```
 
 Setup executable is written to bin/XRmonitorsSetup.exe
 
