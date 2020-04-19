@@ -526,9 +526,9 @@ constexpr char kCylinderPixelShaderHlsl[] = R"_(
     float4 MainPS(PSVertex input) : SV_TARGET {
         float4 color = shaderTexture.Sample(SampleType, input.Tex);
         // Fix gamma
-        color.r = pow(color.r, 2.2);
-        color.g = pow(color.g, 2.2);
-        color.b = pow(color.b, 2.2);
+        color.r = pow(abs(color.r), 2.2);
+        color.g = pow(abs(color.g), 2.2);
+        color.b = pow(abs(color.b), 2.2);
         return color;
     }
 )_";
