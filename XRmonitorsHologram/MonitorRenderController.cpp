@@ -626,12 +626,6 @@ void MonitorRenderController::GenerateCylindricalGeometry(
     const float y0 = -RenderModel->MetersPerPixel * (enum_info->Coords.top - RenderModel->ScreenFocusCenterY);
     const float y1 = -RenderModel->MetersPerPixel * (enum_info->Coords.bottom - RenderModel->ScreenFocusCenterY);
 
-    Logger.Info("enum_info->MonitorIndex=", enum_info->MonitorIndex, " y0 = ", y0);
-    Logger.Info("y1 = ", y1);
-    Logger.Info("enum_info->Coords.top = ", enum_info->Coords.top);
-    Logger.Info("enum_info->Coords.bottom = ", enum_info->Coords.bottom);
-    Logger.Info("RenderModel->ScreenFocusCenterY = ", RenderModel->ScreenFocusCenterY);
-
     int target_quad_count = static_cast<int>(len_m / 0.01f);
     if (target_quad_count > 50) {
         target_quad_count = 50;
