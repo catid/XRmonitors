@@ -14,7 +14,6 @@ namespace XRmonitorsInstaller
     {
         public XRmonitorsInstaller.WelcomePanel welcome_panel = new XRmonitorsInstaller.WelcomePanel();
         public XRmonitorsInstaller.LegalPanel legal_panel = new XRmonitorsInstaller.LegalPanel();
-        public XRmonitorsInstaller.LicensePanel license_panel = new XRmonitorsInstaller.LicensePanel();
         public XRmonitorsInstaller.InstallPanel install_panel = new XRmonitorsInstaller.InstallPanel();
         public XRmonitorsInstaller.ProgressPanel progress_panel = new XRmonitorsInstaller.ProgressPanel();
         public XRmonitorsInstaller.CompletePanel complete_panel = new XRmonitorsInstaller.CompletePanel();
@@ -31,7 +30,6 @@ namespace XRmonitorsInstaller
 
             welcome_panel.Hide();
             legal_panel.Hide();
-            license_panel.Hide();
             install_panel.Hide();
             progress_panel.Hide();
             complete_panel.Hide();
@@ -44,7 +42,6 @@ namespace XRmonitorsInstaller
 
             this.panelContainer.Controls.Add(welcome_panel);
             this.panelContainer.Controls.Add(legal_panel);
-            this.panelContainer.Controls.Add(license_panel);
             this.panelContainer.Controls.Add(install_panel);
             this.panelContainer.Controls.Add(progress_panel);
             this.panelContainer.Controls.Add(complete_panel);
@@ -57,7 +54,7 @@ namespace XRmonitorsInstaller
 
             if (Program.Register)
             {
-                license_panel.Show();
+                install_panel.Show();
             }
             else if (Program.Uninstalling)
             {

@@ -409,7 +409,7 @@ Express and Discover. PCI-DSS requirements help ensure the secure handling of pa
 
         private void ButtonAccept_Click(object sender, EventArgs e)
         {
-            Program.setup_form.license_panel.Show();
+            Program.setup_form.install_panel.Show();
             this.Hide();
         }
     }

@@ -14,7 +14,6 @@
 #include "MonitorRenderModel.hpp"
 #include "CameraCalibration.hpp"
 #include "ApplicationSettings.hpp"
-#include "HttpRequester.hpp"
 
 namespace xrm {
 
@@ -28,10 +27,6 @@ public:
     bool Run();
 
 protected:
-    // Http client
-    AsioHost Host;
-    HTTPRequester HttpRequester;
-
     // Desktop window for the application for keyboard and mouse input
     InputWindow Window;
 

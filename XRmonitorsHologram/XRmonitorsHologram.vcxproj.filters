@@ -25,8 +25,6 @@
     <ClCompile Include="D3D11CrossAdapterDuplication.cpp" />
     <ClCompile Include="D3D11SameAdapterDuplication.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
-    <ClCompile Include="HttpRequester.cpp" />
-    <ClCompile Include="LicenseValidator.cpp" />
     <ClCompile Include="Plugins.cpp" />
     <ClCompile Include="InputWindow.cpp" />
   </ItemGroup>
@@ -77,11 +75,9 @@
     <ClInclude Include="D3D11CrossAdapterDuplication.hpp" />
     <ClInclude Include="D3D11SameAdapterDuplication.hpp" />
     <ClInclude Include="KeyboardInput.hpp" />
-    <ClInclude Include="HttpRequester.hpp" />
     <ClInclude Include="thirdparty\IncludeAsio.h">
       <Filter>thirdparty</Filter>
     </ClInclude>
-    <ClInclude Include="LicenseValidator.hpp" />
     <ClInclude Include="..\SofPro\pcgint.h">
       <Filter>SofPro</Filter>
     </ClInclude>

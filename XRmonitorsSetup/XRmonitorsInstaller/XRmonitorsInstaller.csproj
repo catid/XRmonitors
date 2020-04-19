@@ -189,12 +189,6 @@
     <Compile Include="04_ProgressPanel.Designer.cs">
       <DependentUpon>04_ProgressPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="02_LicensePanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="02_LicensePanel.Designer.cs">
-      <DependentUpon>02_LicensePanel.cs</DependentUpon>
-    </Compile>
     <Compile Include="00_WelcomePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -221,7 +215,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValidateLicense.cs" />
     <EmbeddedResource Include="13_RemoveFailedPanel.resx">
       <DependentUpon>13_RemoveFailedPanel.cs</DependentUpon>
     </EmbeddedResource>
@@ -242,9 +235,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="04_ProgressPanel.resx">
       <DependentUpon>04_ProgressPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="02_LicensePanel.resx">
-      <DependentUpon>02_LicensePanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="00_WelcomePanel.resx">
       <DependentUpon>00_WelcomePanel.cs</DependentUpon>

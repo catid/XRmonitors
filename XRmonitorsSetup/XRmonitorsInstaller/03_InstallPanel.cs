@@ -26,7 +26,7 @@ namespace XRmonitorsInstaller
 
         private void ButtonBack_Click(object sender, EventArgs e)
         {
-            Program.setup_form.license_panel.Show();
+            Program.setup_form.legal_panel.Show();
             this.Hide();
         }
 

@@ -99,7 +99,8 @@
   <PropertyGroup>
     <PreBuildEvent>@echo off
 
-echo "Adding copy protection to binaries"
+REM echo "Adding copy protection to binaries"
+echo "Signing binaries"
 
 
 set PCGUARD="C:\Program Files\PC Guard for .NET64 V6\pcguard.exe"
@@ -117,9 +118,9 @@ if errorlevel 1 goto protection_error
 
 echo "Protecting: XRmonitorsHologram.exe"
 
-%25PCGUARD%25 -silent -process -file "$(SolutionDir)bin\x86_64\XRmonitorsHologram.exe" -output "%25PROT%25\XRmonitorsHologram.exe" "$(SolutionDir)SofPro\SofPro_Backend.prj"
+REM %25PCGUARD%25 -silent -process -file "$(SolutionDir)bin\x86_64\XRmonitorsHologram.exe" -output "%25PROT%25\XRmonitorsHologram.exe" "$(SolutionDir)SofPro\SofPro_Backend.prj"
 
-REM echo 'F' | xcopy /Y "$(SolutionDir)bin\x86_64\XRmonitorsHologram.exe" "%25PROT%25\XRmonitorsHologram.exe"
+echo 'F' | xcopy /Y "$(SolutionDir)bin\x86_64\XRmonitorsHologram.exe" "%25PROT%25\XRmonitorsHologram.exe"
 
 if errorlevel 1 goto protection_error
 
@@ -132,9 +133,9 @@ if errorlevel 1 goto protection_error
 
 echo "Protecting: XRmonitorsService.exe"
 
-%25PCGUARD%25 -silent -process -file "$(SolutionDir)bin\x86_64\XRmonitorsService.exe" -output "%25PROT%25\XRmonitorsService.exe" "$(SolutionDir)SofPro\SofPro_Backend.prj"
+REM %25PCGUARD%25 -silent -process -file "$(SolutionDir)bin\x86_64\XRmonitorsService.exe" -output "%25PROT%25\XRmonitorsService.exe" "$(SolutionDir)SofPro\SofPro_Backend.prj"
 
-REM echo 'F' | xcopy /Y "$(SolutionDir)bin\x86_64\XRmonitorsService.exe" "%25PROT%25\XRmonitorsService.exe"
+echo 'F' | xcopy /Y "$(SolutionDir)bin\x86_64\XRmonitorsService.exe" "%25PROT%25\XRmonitorsService.exe"
 
 if errorlevel 1 goto protection_error
 
@@ -162,9 +163,9 @@ if errorlevel 1 goto protection_error
 
 echo "Protecting: XRmonitorsUI.exe"
 
-%25PCGUARD%25 -silent -process -file "$(SolutionDir)bin\x86_64\XRmonitorsUI.exe" -output "%25PROT%25\XRmonitorsUI.exe" "$(SolutionDir)SofPro\SofPro_Frontend.prj"
+REM %25PCGUARD%25 -silent -process -file "$(SolutionDir)bin\x86_64\XRmonitorsUI.exe" -output "%25PROT%25\XRmonitorsUI.exe" "$(SolutionDir)SofPro\SofPro_Frontend.prj"
 
-REM echo 'F' | xcopy /Y "$(SolutionDir)bin\x86_64\XRmonitorsUI.exe" "%25PROT%25\XRmonitorsUI.exe"
+echo 'F' | xcopy /Y "$(SolutionDir)bin\x86_64\XRmonitorsUI.exe" "%25PROT%25\XRmonitorsUI.exe"
 
 if errorlevel 1 goto protection_error
 
@@ -177,9 +178,9 @@ if errorlevel 1 goto protection_error
 
 echo "Protecting: XRmonitorsInstaller.exe"
 
-%25PCGUARD%25 -silent -process -file "$(SolutionDir)bin\x86_64\XRmonitorsInstaller.exe" -output "%25PROT%25\XRmonitorsInstaller.exe" "$(SolutionDir)SofPro\SofPro_Frontend.prj"
+REM %25PCGUARD%25 -silent -process -file "$(SolutionDir)bin\x86_64\XRmonitorsInstaller.exe" -output "%25PROT%25\XRmonitorsInstaller.exe" "$(SolutionDir)SofPro\SofPro_Frontend.prj"
 
-REM echo 'F' | xcopy /Y "$(SolutionDir)bin\x86_64\XRmonitorsInstaller.exe" "%25PROT%25\XRmonitorsInstaller.exe"
+echo 'F' | xcopy /Y "$(SolutionDir)bin\x86_64\XRmonitorsInstaller.exe" "%25PROT%25\XRmonitorsInstaller.exe"
 
 if errorlevel 1 goto protection_error
 

@@ -125,7 +125,6 @@ namespace XRmonitorsInstaller
             ++i;
             progressBar.Value = 100 * i / prog_total;
 
-            License.RevokeLicense();
             Program.RemoveInstallPath();
 
             this.Update();

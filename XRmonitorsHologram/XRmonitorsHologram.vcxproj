@@ -89,7 +89,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <Link>
       <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
-      <AdditionalDependencies>$(ProjectDir)/../SofPro/pcgint64.lib;D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib; windowsapp.lib; user32.lib; shcore.lib; %(AdditionalDependencies); </AdditionalDependencies>
+      <AdditionalDependencies>D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib; windowsapp.lib; user32.lib; shcore.lib; %(AdditionalDependencies); </AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>mincore.lib;kernel32.lib;ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -118,7 +118,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <Link>
-      <AdditionalDependencies>$(ProjectDir)/../SofPro/pcgint64.lib;D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib; windowsapp.lib; user32.lib; shcore.lib; %(AdditionalDependencies); </AdditionalDependencies>
+      <AdditionalDependencies>D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib; windowsapp.lib; user32.lib; shcore.lib; %(AdditionalDependencies); </AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>mincore.lib;kernel32.lib;ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -147,7 +147,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
-      <AdditionalDependencies>$(ProjectDir)/../SofPro/pcgint64.lib;D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib;mincore.lib;%(AdditionalDependencies); </AdditionalDependencies>
+      <AdditionalDependencies>D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib;mincore.lib;%(AdditionalDependencies); </AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\amd64; $(VCInstallDir)\lib\amd64</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>kernel32.lib;ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -174,7 +174,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>
-      <AdditionalDependencies>$(ProjectDir)/../SofPro/pcgint64.lib;D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib;mincore.lib;%(AdditionalDependencies); </AdditionalDependencies>
+      <AdditionalDependencies>D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib;mincore.lib;%(AdditionalDependencies); </AdditionalDependencies>
       <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\amd64; $(VCInstallDir)\lib\amd64</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>kernel32.lib;ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
@@ -213,10 +213,8 @@
     <ClInclude Include="D3D11SameAdapterDuplication.hpp" />
     <ClInclude Include="D3D11Tools.hpp" />
     <ClInclude Include="HolographicInputBanner.hpp" />
-    <ClInclude Include="HttpRequester.hpp" />
     <ClInclude Include="InputWindow.hpp" />
     <ClInclude Include="KeyboardInput.hpp" />
-    <ClInclude Include="LicenseValidator.hpp" />
     <ClInclude Include="MonitorChangeWatcher.hpp" />
     <ClInclude Include="MonitorEnumerator.hpp" />
     <ClInclude Include="MonitorRenderController.hpp" />
@@ -251,10 +249,8 @@
     <ClCompile Include="D3D11SameAdapterDuplication.cpp" />
     <ClCompile Include="D3D11Tools.cpp" />
     <ClCompile Include="HolographicInputBanner.cpp" />
-    <ClCompile Include="HttpRequester.cpp" />
     <ClCompile Include="InputWindow.cpp" />
     <ClCompile Include="KeyboardInput.cpp" />
-    <ClCompile Include="LicenseValidator.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MonitorChangeWatcher.cpp" />
     <ClCompile Include="MonitorEnumerator.cpp" />

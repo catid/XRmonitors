@@ -17,8 +17,6 @@
 #include <iomanip>
 #include <ctime>
 
-#include "LicenseValidator.hpp"
-
 namespace xrm {
 
 using namespace core;
@@ -121,13 +119,6 @@ bool MainApplication::Run()
 {
     SetupLogging();
 
-    if (!Host.Initialize()) {
-        Logger.Error("Failed to start asio");
-        return false;
-    }
-
-    ValidateLicense(&Host, &HttpRequester);
-
     if (!Window.Initialize()) {
         Logger.Error("Failed to initialize input window");
         return false;
@@ -222,7 +213,6 @@ bool MainApplication::Run()
     Enumerator.Shutdown();
     Cameras.Stop();
     Window.Shutdown();
-    Host.Shutdown();
 
     return program_init;
 }
