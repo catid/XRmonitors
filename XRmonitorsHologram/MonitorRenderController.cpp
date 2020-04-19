@@ -222,7 +222,13 @@ void MonitorRenderController::SetCenteredMonitorForMouse()
             y >= coords.top &&
             y < coords.bottom)
         {
-            CenteredMonitorIndex = monitor->MonitorIndex;
+            // Find which sorted index corresponds to it
+            for (int i = 0; i < SortedMonitors.size(); ++i) {
+                if (SortedMonitors[i].MonitorIndex == monitor->MonitorIndex) {
+                    CenteredMonitorIndex = i;
+                    break;
+                }
+            }
             return;
         }
     }
@@ -230,14 +236,14 @@ void MonitorRenderController::SetCenteredMonitorForMouse()
 
 void MonitorRenderController::OnRecenter()
 {
-    Logger.Info("Keystroke: Recenter");
-
     RenderModel->RecenterPosition = Rendering->HeadPosition;
     RenderModel->RecenterOrientation = Rendering->HeadOrientation;
 
     SetCenteredMonitorForMouse();
     RenderModel->ScreenFocusCenterX = SortedMonitors[CenteredMonitorIndex].ScreenCenterX;
     RenderModel->ScreenFocusCenterY = SortedMonitors[CenteredMonitorIndex].ScreenCenterY;
+
+    Logger.Info("Keystroke: Recenter on monitor ", CenteredMonitorIndex, " (", RenderModel->ScreenFocusCenterX, ", ", RenderModel->ScreenFocusCenterY, ")");
 
     // Update pitch/yaw
     UpdatePitchYaw();
@@ -619,6 +625,12 @@ void MonitorRenderController::GenerateCylindricalGeometry(
 
     const float y0 = -RenderModel->MetersPerPixel * (enum_info->Coords.top - RenderModel->ScreenFocusCenterY);
     const float y1 = -RenderModel->MetersPerPixel * (enum_info->Coords.bottom - RenderModel->ScreenFocusCenterY);
+
+    Logger.Info("enum_info->MonitorIndex=", enum_info->MonitorIndex, " y0 = ", y0);
+    Logger.Info("y1 = ", y1);
+    Logger.Info("enum_info->Coords.top = ", enum_info->Coords.top);
+    Logger.Info("enum_info->Coords.bottom = ", enum_info->Coords.bottom);
+    Logger.Info("RenderModel->ScreenFocusCenterY = ", RenderModel->ScreenFocusCenterY);
 
     int target_quad_count = static_cast<int>(len_m / 0.01f);
     if (target_quad_count > 50) {

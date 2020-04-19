@@ -848,7 +848,7 @@ void OpenXrD3D11SwapChains::InitializeHeadsetRendering()
     Logger.Info(" *        positionTracking: ", Headset->SystemTrackingProperties.positionTracking);
 
 #if 0
-    // I heard they fixed this so let's try it out
+    // This may be fixed now
     Headset->NeedsReverbColorHack = StrIStr(Headset->HeadsetModel.c_str(), "reverb") != 0;
     if (Headset->NeedsReverbColorHack) {
         Logger.Info("Headset needs Reverb color hack to fix high-end");
