@@ -31,7 +31,6 @@ namespace XRmonitorsInstaller
         public static string InstallPath = "";
 
         public static string[] FileNames = new string[] {
-            "iDLL64.dll",
             "XRmonitorsHologram.exe",
             "XRmonitorsCamera.dll",
             "XRmonitorsService.exe",

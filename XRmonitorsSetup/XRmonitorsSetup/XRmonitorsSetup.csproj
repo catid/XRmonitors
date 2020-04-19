@@ -54,18 +54,16 @@
     <ManifestKeyFile>DigiCertPrivateKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>DigiCertUnchained.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="app.manifest" />
     <EmbeddedResource Include="Resources\camera_calibration.ini" />
-    <None Include="DigiCertPrivateKey.pfx" />
-    <None Include="DigiCertUnchained.pfx" />
     <EmbeddedResource Include="Resources\PublicCertificate.cer" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\iDLL64.dll" />
     <EmbeddedResource Include="Resources\ToggleSwitch.dll" />
     <EmbeddedResource Include="Resources\XRmonitorsCamera.dll" />
     <EmbeddedResource Include="Resources\XRmonitorsHologram.exe" />
@@ -93,6 +91,7 @@
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

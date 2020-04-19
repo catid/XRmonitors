@@ -50,9 +50,6 @@ XrResult GeneratedXrUtilitiesResultToString(XrResult result,
         case XR_TIMEOUT_EXPIRED:
             strncpy(buffer, "XR_TIMEOUT_EXPIRED", XR_MAX_RESULT_STRING_SIZE);
             break;
-        case XR_SESSION_VISIBILITY_UNAVAILABLE:
-            strncpy(buffer, "XR_SESSION_VISIBILITY_UNAVAILABLE", XR_MAX_RESULT_STRING_SIZE);
-            break;
         case XR_SESSION_LOSS_PENDING:
             strncpy(buffer, "XR_SESSION_LOSS_PENDING", XR_MAX_RESULT_STRING_SIZE);
             break;

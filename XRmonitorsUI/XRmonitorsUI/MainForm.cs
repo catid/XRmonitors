@@ -295,6 +295,7 @@ namespace XRmonitorsUI
             // Else if user version is installed:
             else if (Program.IsStoreAppInstalled("Microsoft.WindowsMixedRealityRuntimeApp"))
             {
+                MessageBox.Show("Developer version of OpenXR is not installed: Find it on the Microsoft Store");
                 toolStripStatusLabel1.Text = "Developer version of OpenXR is not installed";
             }
             else
@@ -397,6 +398,7 @@ namespace XRmonitorsUI
 
         public bool VrStarted = false;
         public Process VrProc = null;
+        private int LastFailureMsec = 0;
 
         private void StartVrProcess()
         {
@@ -429,9 +431,14 @@ namespace XRmonitorsUI
                     {
                         if (exit_code != 0)
                         {
-                            if (NeedsOpenXrSupport())
+                            int now_msec = DateTime.Now.Millisecond;
+                            bool fast_fail = LastFailureMsec != 0 && now_msec - LastFailureMsec < 1000;
+                            LastFailureMsec = now_msec;
+
+                            if (fast_fail || NeedsOpenXrSupport())
                             {
                                 Program.g_OpenXrNeeded.Show(); this.Hide();
+                                toggleEnableMonitors.Checked = false;
                                 return;
                             }
                         }

@@ -2,6 +2,8 @@
 // Copyright (c) 2017 Valve Corporation
 // Copyright (c) 2017 LunarG, Inc.
 //
+// SPDX-License-Identifier: Apache-2.0
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -19,16 +21,16 @@
 
 #pragma once
 
+#include <openxr/openxr.h>
+
 #include <memory>
 #include <string>
 #include <vector>
 #include <unordered_map>
 
-#include "xr_dependencies.h"
-#include <openxr/openxr.h>
-#include <openxr/openxr_platform.h>
-
-#include <json/json.h>
+namespace Json {
+class Value;
+}
 
 enum ManifestFileType {
     MANIFEST_TYPE_UNDEFINED = 0,
@@ -45,7 +47,7 @@ struct JsonVersion {
 
 struct ExtensionListing {
     std::string name;
-    uint32_t spec_version;
+    uint32_t extension_version;
     std::vector<std::string> entrypoints;
 };
 
@@ -53,21 +55,23 @@ struct ExtensionListing {
 // Base class responsible for finding and parsing manifest files.
 class ManifestFile {
    public:
-    ManifestFile(ManifestFileType type, const std::string &filename, const std::string &library_path);
-    virtual ~ManifestFile();
-    static bool IsValidJson(Json::Value &root, JsonVersion &version);
+    // Non-copyable
+    ManifestFile(const ManifestFile &) = delete;
+    ManifestFile &operator=(const ManifestFile &) = delete;
 
-    // We don't want any copy constructors
-    ManifestFile &operator=(const ManifestFile &manifest_file) = delete;
-
-    ManifestFileType Type() { return _type; }
-    std::string Filename() { return _filename; }
-    std::string LibraryPath() { return _library_path; }
+    ManifestFileType Type() const { return _type; }
+    const std::string &Filename() const { return _filename; }
+    const std::string &LibraryPath() const { return _library_path; }
     void GetInstanceExtensionProperties(std::vector<XrExtensionProperties> &props);
     void GetDeviceExtensionProperties(std::vector<XrExtensionProperties> &props);
-    const std::string &GetFunctionName(const std::string &func_name);
+    const std::string &GetFunctionName(const std::string &func_name) const;
 
    protected:
+    ManifestFile(ManifestFileType type, const std::string &filename, const std::string &library_path);
+    void ParseCommon(Json::Value const &root_node);
+    static bool IsValidJson(const Json::Value &root, JsonVersion &version);
+
+   private:
     std::string _filename;
     ManifestFileType _type;
     std::string _library_path;
@@ -83,12 +87,9 @@ class RuntimeManifestFile : public ManifestFile {
     // Factory method
     static XrResult FindManifestFiles(ManifestFileType type, std::vector<std::unique_ptr<RuntimeManifestFile>> &manifest_files);
 
+   private:
     RuntimeManifestFile(const std::string &filename, const std::string &library_path);
-    virtual ~RuntimeManifestFile();
-    static void CreateIfValid(std::string filename, std::vector<std::unique_ptr<RuntimeManifestFile>> &manifest_files);
-
-    // We don't want any copy constructors
-    RuntimeManifestFile &operator=(const RuntimeManifestFile &manifest_file) = delete;
+    static void CreateIfValid(const std::string &filename, std::vector<std::unique_ptr<RuntimeManifestFile>> &manifest_files);
 };
 
 // ApiLayerManifestFile class -
@@ -98,20 +99,16 @@ class ApiLayerManifestFile : public ManifestFile {
     // Factory method
     static XrResult FindManifestFiles(ManifestFileType type, std::vector<std::unique_ptr<ApiLayerManifestFile>> &manifest_files);
 
+    const std::string &LayerName() const { return _layer_name; }
+    void PopulateApiLayerProperties(XrApiLayerProperties &props) const;
+
+   private:
     ApiLayerManifestFile(ManifestFileType type, const std::string &filename, const std::string &layer_name,
                          const std::string &description, const JsonVersion &api_version, const uint32_t &implementation_version,
                          const std::string &library_path);
-    virtual ~ApiLayerManifestFile();
-    static void CreateIfValid(ManifestFileType type, std::string filename,
+    static void CreateIfValid(ManifestFileType type, const std::string &filename,
                               std::vector<std::unique_ptr<ApiLayerManifestFile>> &manifest_files);
 
-    // We don't want any copy constructors
-    ApiLayerManifestFile &operator=(const ApiLayerManifestFile &manifest_file) = delete;
-
-    std::string LayerName() { return _layer_name; }
-    XrApiLayerProperties GetApiLayerProperties();
-
-   private:
     JsonVersion _api_version;
     std::string _layer_name;
     std::string _description;

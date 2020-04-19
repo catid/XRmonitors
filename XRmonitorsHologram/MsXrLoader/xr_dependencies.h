@@ -1,4 +1,6 @@
-// Copyright (c) 2018-2019 The Khronos Group Inc.
+// Copyright (c) 2018-2020 The Khronos Group Inc.
+//
+// SPDX-License-Identifier: Apache-2.0
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,33 +21,30 @@
 
 #ifdef XR_USE_PLATFORM_ANDROID
 #include <android/native_window.h>
+#include <android/window.h>
+#include <android/native_window_jni.h>
 #endif  // XR_USE_PLATFORM_ANDROID
 
 #ifdef XR_USE_PLATFORM_WIN32
 
 #include <winapifamily.h>
 #if !(WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP | WINAPI_PARTITION_SYSTEM))
-#pragma push_macro("WINAPI_PARTITION_DESKTOP")
+// Enable desktop partition APIs, such as RegOpenKeyEx, LoadLibraryEx, PathFileExists etc.
 #undef WINAPI_PARTITION_DESKTOP
-#define WINAPI_PARTITION_DESKTOP 1  // Enable desktop partition apis, such as RegOpenKeyEx, LoadLibraryEx etc.
-#define CHANGED_WINAPI_PARTITION_DESKTOP_VALUE
+#define WINAPI_PARTITION_DESKTOP 1
 #endif
 
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif  // !NOMINMAX
+
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
+#endif  // !WIN32_LEAN_AND_MEAN
+
 #include <windows.h>
 
-#if defined(CHANGED_WINAPI_PARTITION_DESKTOP_VALUE)
-#pragma pop_macro("WINAPI_PARTITION_DESKTOP")
-#endif
-
 #endif  // XR_USE_PLATFORM_WIN32
-
-#ifdef XR_USE_GRAPHICS_API_D3D10
-// d3d10_1 must be included to ensure proper SAL annotations, otherwise the compiler will emit:
-//    #error:  d3d10.h is included before d3d10_1.h, and it will confuse tools that honor SAL annotations.
-//    If possibly targeting d3d10.1, include d3d10_1.h instead of d3d10.h, or ensure d3d10_1.h is included before d3d10.h
-#include <d3d10_1.h>
-#endif  // XR_USE_GRAPHICS_API_D3D10
 
 #ifdef XR_USE_GRAPHICS_API_D3D11
 #include <d3d11.h>
@@ -58,6 +57,18 @@
 #ifdef XR_USE_PLATFORM_XLIB
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+
+#ifdef Success
+#undef Success
+#endif  // Success
+
+#ifdef Always
+#undef Always
+#endif  // Always
+
+#ifdef None
+#undef None
+#endif  // None
 #endif  // XR_USE_PLATFORM_XLIB
 
 #ifdef XR_USE_PLATFORM_XCB

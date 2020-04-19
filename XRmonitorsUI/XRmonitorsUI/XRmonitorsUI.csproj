@@ -87,13 +87,6 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="altpcgi.cs" />
-    <Compile Include="DemoExpired.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DemoExpired.Designer.cs">
-      <DependentUpon>DemoExpired.cs</DependentUpon>
-    </Compile>
     <Compile Include="OpenXrNeeded.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,9 +192,6 @@
   <ItemGroup>
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DemoExpired.resx">
-      <DependentUpon>DemoExpired.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

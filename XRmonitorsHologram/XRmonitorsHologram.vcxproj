@@ -99,7 +99,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)stdafx.pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(ProjectDir);$(IntermediateOutputPath);$(ProjectDir)../core/include/;$(ProjectDir)../mrcam_client/include/;$(ProjectDir)../protocols/include/;$(ProjectDir)../MsXrLoader/;$(ProjectDir)thirdparty/DirectXTK/Inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /await /std:c++latest  %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>_ENABLE_EXTENDED_ALIGNED_STORAGE; _DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XR_OS_WINDOWS;_ENABLE_EXTENDED_ALIGNED_STORAGE; _DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
@@ -128,7 +128,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)stdafx.pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(ProjectDir);$(IntermediateOutputPath);$(ProjectDir)../core/include/;$(ProjectDir)../mrcam_client/include/;$(ProjectDir)../protocols/include/;$(ProjectDir)../MsXrLoader/;$(ProjectDir)thirdparty/DirectXTK/Inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /await /std:c++latest  %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>_ENABLE_EXTENDED_ALIGNED_STORAGE; NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XR_OS_WINDOWS;_ENABLE_EXTENDED_ALIGNED_STORAGE; NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <CompileAsManaged>false</CompileAsManaged>
       <ControlFlowGuard>false</ControlFlowGuard>
@@ -159,7 +159,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)stdafx.pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(ProjectDir);$(IntermediateOutputPath);$(ProjectDir)../core/include/;$(ProjectDir)../mrcam_client/include/;$(ProjectDir)../protocols/include/;$(ProjectDir)../MsXrLoader/;$(ProjectDir)thirdparty/DirectXTK/Inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /await /std:c++latest  %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>_ENABLE_EXTENDED_ALIGNED_STORAGE; _DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XR_OS_WINDOWS;_ENABLE_EXTENDED_ALIGNED_STORAGE; _DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <CompileAsManaged>false</CompileAsManaged>
       <LanguageStandard>stdcpplatest</LanguageStandard>
@@ -185,7 +185,7 @@
       <PrecompiledHeaderOutputFile>$(IntDir)stdafx.pch</PrecompiledHeaderOutputFile>
       <AdditionalIncludeDirectories>$(ProjectDir);$(IntermediateOutputPath);$(ProjectDir)../core/include/;$(ProjectDir)../mrcam_client/include/;$(ProjectDir)../protocols/include/;$(ProjectDir)../MsXrLoader/;$(ProjectDir)thirdparty/DirectXTK/Inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>/bigobj /await /std:c++latest  %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>_ENABLE_EXTENDED_ALIGNED_STORAGE; NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>XR_OS_WINDOWS;_ENABLE_EXTENDED_ALIGNED_STORAGE; NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsWinRT>false</CompileAsWinRT>
       <CompileAsManaged>false</CompileAsManaged>
       <ControlFlowGuard>false</ControlFlowGuard>
@@ -227,6 +227,7 @@
     <ClInclude Include="openxr\openxr.h" />
     <ClInclude Include="openxr\openxr_platform.h" />
     <ClInclude Include="openxr\openxr_platform_defines.h" />
+    <ClInclude Include="openxr\openxr_reflection.h" />
     <ClInclude Include="Plugins.hpp" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="stdafx.h" />

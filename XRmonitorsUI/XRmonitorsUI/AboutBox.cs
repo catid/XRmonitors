@@ -81,36 +81,7 @@ namespace XRmonitorsUI
 <p>This policy is effective as of 11 May 2019.</p>
 ";
 
-#if !DEBUG
-            AltPcgi.PCG_INTERFACE_STRUCT pis = new AltPcgi.PCG_INTERFACE_STRUCT();
-            int result = AltPcgi.GetInterfaceData(ref pis);
-            if (result == (int)AltPcgi.ReturnCodes.PCGI_STATUS_OK)
-            {
-                // If application is unlocked:
-                if ((pis.PCGI_ApplicationStatus != 0) && (pis.PCGI_SerialNumber.Length > 0))
-                {
-                    this.labelLicense.Text = "License Serial Number:\n"
-                        + pis.PCGI_SerialNumber + "\n"
-                        + "SiteCode:\n"
-                        + pis.PCGI_SiteCode.ToString("X8") + "\n"
-                        + "MID:\n"
-                        + pis.PCGI_MachineID01.ToString("X4") + "-"
-                        + pis.PCGI_MachineID02.ToString("X4") + "-"
-                        + pis.PCGI_MachineID03.ToString("X4") + "-"
-                        + pis.PCGI_MachineID04.ToString("X4");
-                }
-                else // We assume this is a demo mode:
-                {
-                    this.labelLicense.Text = "This is a time-limited demo version with " + pis.PCGI_DemoDaysLeft + " days remaining.";
-                }
-            }
-            else
-            {
-                this.labelLicense.Text = "Unable to retrieve license information.";
-            }
-#else
-            this.labelLicense.Text = "INTERNAL DEBUG VERSION";
-#endif
+            this.labelLicense.Text = "OPEN SOURCE VERSION";
         }
 
         #region Assembly Attribute Accessors
@@ -195,11 +166,7 @@ namespace XRmonitorsUI
 
         private void RevokeLicenseToolStripMenuItem_Click(object sender, EventArgs e)
         {
-#if !DEBUG
-            AltPcgi.InvalidateSerialNumber();
-#else
-            MessageBox.Show("License features disabled in debug mode");
-#endif
+            MessageBox.Show("License features disabled for open source distribution");
         }
     }
 }

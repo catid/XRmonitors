@@ -80,7 +80,6 @@
       <!-- This file is #included by loader_core.cpp so it shouldn't be built directly -->
       <ExcludedFromBuild>true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="xr_generated_utilities.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api_layer_interface.hpp" />
@@ -97,7 +96,6 @@
     <ClInclude Include="common_cmake_config.h" />
     <ClInclude Include="xr_dependencies.h" />
     <ClInclude Include="xr_generated_dispatch_table.h" />
-    <ClInclude Include="xr_generated_utilities.h" />
     <ClInclude Include="xr_generated_loader.hpp" />
   </ItemGroup>
   <ItemGroup>

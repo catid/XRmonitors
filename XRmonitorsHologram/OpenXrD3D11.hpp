@@ -42,11 +42,11 @@ static const XrViewConfigurationType \
     kPrimaryViewConfigurationType = XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO;
 
 #define OPENXR_APP_NAME     "XRmonitorsHologram"
-#define OPENXR_APP_VERSION  100
+#define OPENXR_APP_VERSION  108
 #define OPENXR_ENGINE_NAME  "XRmonitors"
 
 // We extend the Microsoft code a bit to allow for our own debug message handler
-using XrDebugMessengerHandle = XrHandle<XrDebugUtilsMessengerEXT, LoaderXrTermDestroyDebugUtilsMessengerEXT>;
+//using XrDebugMessengerHandle = XrHandle<XrDebugUtilsMessengerEXT, LoaderXrTermDestroyDebugUtilsMessengerEXT>;
 
 
 //------------------------------------------------------------------------------
@@ -196,7 +196,7 @@ struct XrComputerProperties
     }
 
     // OpenXR debugging callbacks
-    XrDebugMessengerHandle Messenger;
+    //XrDebugMessengerHandle Messenger;
 };
 
 
@@ -277,7 +277,7 @@ struct XrRenderProperties
     XrSpaceHandle HeadSpace;
 
     // Head pose predicted for render time
-    XrSpaceRelation HeadPose;
+    XrSpaceLocation HeadPose;
     DirectX::SimpleMath::Quaternion HeadOrientation; ///< Parsed from HeadPose
     DirectX::SimpleMath::Vector3 HeadPosition; ///< Parsed from HeadPose
 

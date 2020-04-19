@@ -758,15 +758,15 @@ void MonitorRenderView::FrameRenderStart()
     // Update cubes location with latest space relation
     for (auto cube : { m_Cube }) {
         if (cube.Space != XR_NULL_HANDLE) {
-            XrSpaceRelation spaceRelation{ XR_TYPE_SPACE_RELATION };
+            XrSpaceLocation spaceLocation{ XR_TYPE_SPACE_LOCATION };
             XR_CHECK_XRCMD(xrLocateSpace(
                 cube.Space,
                 Rendering->SceneSpace.Get(),
                 Rendering->PredictedDisplayTime,
-                &spaceRelation));
+                &spaceLocation));
 
             if (Rendering->ViewPosesValid) {
-                cube.Pose = spaceRelation.pose;
+                cube.Pose = spaceLocation.pose;
             }
         }
     }

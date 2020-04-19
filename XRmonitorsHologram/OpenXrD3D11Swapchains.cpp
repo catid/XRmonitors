@@ -210,8 +210,8 @@ void OpenXrD3D11SwapChains::ProcessEvents(bool* exitRenderLoop, bool* requestRes
                 Headset->SessionRunning = true;
                 break;
             }
-            case XR_SESSION_STATE_RUNNING: {
-                Logger.Debug("Session changed: XR_SESSION_STATE_RUNNING - NOT rendering");
+            case XR_SESSION_STATE_SYNCHRONIZED: {
+                Logger.Debug("Session changed: XR_SESSION_STATE_SYNCHRONIZED - NOT rendering");
                 break;
             }
             case XR_SESSION_STATE_VISIBLE: {
@@ -669,6 +669,7 @@ bool OpenXrD3D11SwapChains::CreateInstanceAndLogger()
             &createInfo,
             Computer->Instance.Put()));
 
+#if 0
         // Set up logging messenger:
         XR_CHECK(Computer->Messenger.Get() == XR_NULL_HANDLE);
 #if 0
@@ -702,6 +703,7 @@ bool OpenXrD3D11SwapChains::CreateInstanceAndLogger()
             Computer->Instance.Get(),
             &logc,
             Computer->Messenger.Put()));
+#endif
 
         return true;
     }
@@ -785,6 +787,7 @@ XrEnvironmentBlendMode OpenXrD3D11SwapChains::SelectEnvironmentBlendMode()
     XR_CHECK_XRCMD(xrEnumerateEnvironmentBlendModes(
         Computer->Instance.Get(),
         Headset->SystemId,
+        XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO,
         0,
         &count,
         nullptr));
@@ -794,6 +797,7 @@ XrEnvironmentBlendMode OpenXrD3D11SwapChains::SelectEnvironmentBlendMode()
     XR_CHECK_XRCMD(xrEnumerateEnvironmentBlendModes(
         Computer->Instance.Get(),
         Headset->SystemId,
+        XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO,
         count,
         &count,
         environmentBlendModes.data()));
@@ -835,7 +839,6 @@ void OpenXrD3D11SwapChains::InitializeHeadsetRendering()
     Headset->SystemTrackingProperties = system_properties.trackingProperties;
 
     Logger.Info("OpenXR headset information for model: `", Headset->HeadsetModel, "` [VendorId:", HexString(Headset->HeadsetVendorId), "]");
-    Logger.Info(" *            maxViewCount: ", Headset->SystemGraphicsProperties.maxViewCount);
     Logger.Info(" *           maxLayerCount: ", Headset->SystemGraphicsProperties.maxLayerCount);
     Logger.Info(" *  maxSwapchainImageWidth: ", Headset->SystemGraphicsProperties.maxSwapchainImageWidth);
     Logger.Info(" * maxSwapchainImageHeight: ", Headset->SystemGraphicsProperties.maxSwapchainImageHeight);

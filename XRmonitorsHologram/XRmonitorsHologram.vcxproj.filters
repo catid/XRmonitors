@@ -86,6 +86,9 @@
     </ClInclude>
     <ClInclude Include="Plugins.hpp" />
     <ClInclude Include="InputWindow.hpp" />
+    <ClInclude Include="openxr\openxr_reflection.h">
+      <Filter>openxr</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="XrUtility">

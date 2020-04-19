@@ -420,39 +420,8 @@ namespace XRmonitorsUI
             // Create these after setup so that the dependencies above are available
             g_OpenXrNeeded = new XRmonitorsUI.OpenXrNeeded();
 
-#if DEBUG
             g_MainForm = new XRmonitorsUI.MainForm();
             Application.Run(Program.g_MainForm);
-#else
-            AltPcgi.PCG_INTERFACE_STRUCT pis = new AltPcgi.PCG_INTERFACE_STRUCT();
-            AltPcgi.GetInterfaceData(ref pis);
-
-            if (pis.PCGI_VirtualMachineFlag != 0)
-            {
-                return;
-            }
-
-            bool unlocked = (pis.PCGI_ApplicationStatus != 0) && (pis.PCGI_SerialNumber.Length > 0);
-
-            // If locked:
-            if (!unlocked)
-            {
-                Application.Run(new XRmonitorsUI.DemoExpired());
-                return;
-            }
-
-            bool demo_mode = (pis.PCGI_DemoModeActive != 0);
-
-            // If unlocked in demo mode:
-            if (demo_mode)
-            {
-                Application.Run(new XRmonitorsUI.Registration());
-                return;
-            }
-
-            g_MainForm = new XRmonitorsUI.MainForm();
-            Application.Run(Program.g_MainForm);
-#endif
         }
     }
 }

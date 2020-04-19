@@ -56,7 +56,6 @@ namespace XRmonitorsSetup
         }
 
         public static string[] FileNames = new string[] {
-            "iDLL64.dll",
             "ToggleSwitch.dll",
             "camera_calibration.ini",
             "XRmonitorsHologram.exe",
@@ -91,10 +90,6 @@ namespace XRmonitorsSetup
             if (Program.Uninstalling)
             {
                 if (!copyResourceFile("XRmonitorsInstaller.exe"))
-                {
-                    return false;
-                }
-                if (!copyResourceFile("iDLL64.dll"))
                 {
                     return false;
                 }

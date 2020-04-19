@@ -61,55 +61,17 @@ namespace XRmonitorsSetup.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [HP Windows Mixed Reality Headset]
-        ///K1=-0.7
-        ///Scale=14.0
-        ///OffsetX=0.247
-        ///OffsetY=-0.208
-        ///EyeCantX=-0.623
-        ///EyeCantY=-0.264
-        ///EyeCantZ=0.0
-        ///
-        ///[DELL VISOR VR118]
-        ///K1=-0.7
-        ///Scale=14.0
-        ///OffsetX=0.247
-        ///OffsetY=-0.208
-        ///EyeCantX=-0.623
-        ///EyeCantY=-0.264
-        ///EyeCantZ=0.0
-        ///
-        ///[Lenovo Explorer]
-        ///K1=-0.7
-        ///Scale=14.0
-        ///OffsetX=0.227
-        ///OffsetY=-0.240
-        ///EyeCantX=-0.554
-        ///EyeCantY=-0.337
-        ///EyeCantZ=0.0
-        ///
-        ///[Samsung Windows Mixed Reality]
-        ///K1=-0.7
-        ///Scale=18.0
-        ///OffsetX=0.231
-        ///OffsetY=-0.116
-        ///EyeCantX=-0.472
-        ///EyeCantY=-0.326
-        ///EyeCantZ=0.1 [rest of string was truncated]&quot;;.
+        ///   Looks up a localized string similar to ; Calibrating a new headset:
+        ///; Setup: View the camera render output using from XRmonitorsHologram in the Mixed Reality Portal.
+        ///; (1) Choose K1 such that straight lines (e.g. a ruler) are straight near the edges of the screen.
+        ///; (2) Put on the HMD and check if the world scale needs to be larger or smaller: Update Scale.
+        ///; (3) Put on the HMD and look at something far away:
+        ///; Adjust OffsetX until both eyes see that object in the same point in the center of the screen.
+        ///; (5) Put on the HMD and look at a h [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string camera_calibration {
             get {
                 return ResourceManager.GetString("camera_calibration", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        internal static byte[] iDLL64 {
-            get {
-                object obj = ResourceManager.GetObject("iDLL64", resourceCulture);
-                return ((byte[])(obj));
             }
         }
         

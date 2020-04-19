@@ -176,7 +176,6 @@
     <Compile Include="06_FailedPanel.Designer.cs">
       <DependentUpon>06_FailedPanel.cs</DependentUpon>
     </Compile>
-    <Compile Include="altpcgi.cs" />
     <Compile Include="05_CompletePanel.cs">
       <SubType>UserControl</SubType>
     </Compile>

@@ -69,93 +69,14 @@ namespace XRmonitorsUI
 ";
         }
 
-        private void FixSerialBox()
-        {
-            int select_start = textBox1.SelectionStart;
-
-            String text = textBox1.Text;
-            String result = "";
-            foreach (char c in text.ToCharArray())
-            {
-                if ((c >= '0' && c <= '9') ||
-                    (c >= 'a' && c <= 'z') ||
-                    (c >= 'A' && c <= 'Z'))
-                {
-                    if (result.Length == 4 ||
-                        result.Length == 9 ||
-                        result.Length == 12 ||
-                        result.Length == 17)
-                    {
-                        result += "-";
-                    }
-                    else if (result.Length >= 22)
-                    {
-                        break;
-                    }
-
-                    result += char.ToUpper(c);
-                }
-            }
-
-            if (text != result)
-            {
-                textBox1.Text = result;
-                if (select_start + 1 >= text.Length)
-                {
-                    textBox1.SelectionStart = result.Length;
-                }
-                else
-                {
-                    textBox1.SelectionStart = select_start;
-                }
-            }
-        }
-
-        private void TextBox1_TextChanged(object sender, EventArgs e)
-        {
-            if (textBox1.Text.Length > 0)
-            {
-                button1.Text = "Accept and Apply Key";
-                FixSerialBox();
-            }
-            else
-            {
-                button1.Text = "Accept and Continue Demo";
-            }
-        }
-
         private void Button1_Click(object sender, EventArgs e)
         {
-            if (textBox1.Text.Length > 0)
-            {
-                if (AltPcgi.SetSerialNumber(textBox1.Text.Trim()) != (int)AltPcgi.ReturnCodes.PCGI_STATUS_OK)
-                {
-                    MessageBox.Show("Please check the license key.");
-                    return;
-                }
-
-                Console.WriteLine("Launching installer");
-
-                AltPcgi.InvalidateSerialNumber();
-
-                var psi = new ProcessStartInfo();
-                psi.UseShellExecute = true;
-                psi.FileName = Path.Combine(Program.InstallPath, "XRmonitorsSetup.exe");
-                psi.Arguments = "/register " + textBox1.Text.Trim();
-                Process process = Process.Start(psi);
-
-                Console.WriteLine("Launched");
-
-                Application.Exit();
-            }
-
-            // Software unlocked!
+            // Software unlocked in open source mode
             Program.ShowMainForm(); this.Hide();
         }
 
         private void Registration_Load(object sender, EventArgs e)
         {
-            textBox1.Focus();
         }
 
         private void Registration_Shown(object sender, EventArgs e)
