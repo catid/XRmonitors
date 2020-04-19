@@ -292,6 +292,9 @@ struct XrRenderProperties
     // Format for the swapchain render target textures
     DXGI_FORMAT SwapchainFormat = DXGI_FORMAT_UNKNOWN;
 
+    // View configuration that we want to produce views for
+    XrViewConfigurationType ViewConfigurationType = XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO;
+
     // Predicted display time for the current frame
     XrTime PredictedDisplayTime;
 

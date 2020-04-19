@@ -694,3 +694,17 @@ extern "C" LOADER_EXPORT XRAPI_ATTR XrResult XRAPI_CALL xrStopHapticFeedback(
 XRLOADER_ABI_CATCH_FALLBACK
 
 
+// Added this -cat
+extern "C" XRAPI_ATTR XrResult XRAPI_CALL xrGetD3D11GraphicsRequirementsKHR(
+    XrInstance                                  instance,
+    XrSystemId                                  systemId,
+    XrGraphicsRequirementsD3D11KHR* graphicsRequirements) XRLOADER_ABI_TRY
+{
+    LoaderInstance* loader_instance;
+    XrResult result = ActiveLoaderInstance::Get(&loader_instance, "xrGetD3D11GraphicsRequirementsKHR");
+    if (XR_SUCCEEDED(result)) {
+        result = loader_instance->DispatchTable()->GetD3D11GraphicsRequirementsKHR(instance, systemId, graphicsRequirements);
+    }
+    return result;
+}
+XRLOADER_ABI_CATCH_FALLBACK

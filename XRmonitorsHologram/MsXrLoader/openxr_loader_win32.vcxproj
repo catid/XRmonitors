@@ -72,34 +72,62 @@
     <ClCompile Include="loader_core.cpp" />
     <ClCompile Include="loader_instance.cpp" />
     <ClCompile Include="loader_logger.cpp" />
+    <ClCompile Include="loader_logger_recorders.cpp" />
     <ClCompile Include="manifest_file.cpp" />
+    <ClCompile Include="object_info.cpp" />
     <ClCompile Include="runtime_interface.cpp" />
     <ClCompile Include="jsoncpp.cpp" />
     <ClCompile Include="xr_generated_dispatch_table.c" />
     <ClCompile Include="xr_generated_loader.cpp">
       <!-- This file is #included by loader_core.cpp so it shouldn't be built directly -->
       <ExcludedFromBuild>true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugStatic|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|Win32'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugStatic|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|ARM64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugStatic|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|ARM'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='DebugStatic|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='ReleaseStatic|x64'">false</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="api_layer_interface.hpp" />
+    <ClInclude Include="exception_handling.hpp" />
+    <ClInclude Include="extra_algorithms.h" />
     <ClInclude Include="filesystem_utils.hpp" />
+    <ClInclude Include="hex_and_handles.h" />
     <ClInclude Include="json\json-forwards.h" />
     <ClInclude Include="json\json.h" />
     <ClInclude Include="loader_instance.hpp" />
     <ClInclude Include="loader_interfaces.h" />
     <ClInclude Include="loader_logger.hpp" />
+    <ClInclude Include="loader_logger_recorders.hpp" />
     <ClInclude Include="loader_platform.hpp" />
     <ClInclude Include="manifest_file.hpp" />
+    <ClInclude Include="object_info.h" />
+    <ClInclude Include="openxr_platform_defines.h" />
     <ClInclude Include="platform_utils.hpp" />
     <ClInclude Include="runtime_interface.hpp" />
     <ClInclude Include="common_cmake_config.h" />
     <ClInclude Include="xr_dependencies.h" />
     <ClInclude Include="xr_generated_dispatch_table.h" />
     <ClInclude Include="xr_generated_loader.hpp" />
+    <ClInclude Include="xr_linear.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="loader.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="openxr-loader.def" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

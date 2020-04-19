@@ -337,6 +337,7 @@ void OpenXrD3D11SwapChains::RenderFrameViews()
     // Read view locations:
 
     XrViewLocateInfo locate_info{ XR_TYPE_VIEW_LOCATE_INFO };
+    locate_info.viewConfigurationType = Rendering->ViewConfigurationType;
     locate_info.displayTime = Rendering->PredictedDisplayTime;
     locate_info.space = Rendering->SceneSpace.Get();
 
@@ -367,6 +368,7 @@ void OpenXrD3D11SwapChains::RenderFrameViews()
 
     Rendering->ProjectionLayer.SubmittedViews.resize(view_count, { XR_TYPE_COMPOSITION_LAYER_PROJECTION_VIEW });
 
+    Rendering->HeadPose.type = XR_TYPE_SPACE_LOCATION;
     XR_CHECK_XRCMD(xrLocateSpace(
         Rendering->HeadSpace.Get(),
         Rendering->SceneSpace.Get(),
@@ -845,9 +847,69 @@ void OpenXrD3D11SwapChains::InitializeHeadsetRendering()
     Logger.Info(" *     orientationTracking: ", Headset->SystemTrackingProperties.orientationTracking);
     Logger.Info(" *        positionTracking: ", Headset->SystemTrackingProperties.positionTracking);
 
+#if 0
+    // I heard they fixed this so let's try it out
     Headset->NeedsReverbColorHack = StrIStr(Headset->HeadsetModel.c_str(), "reverb") != 0;
     if (Headset->NeedsReverbColorHack) {
         Logger.Info("Headset needs Reverb color hack to fix high-end");
+    }
+#endif
+
+    // Get view configurations supported:
+
+    uint32_t view_config_count = 0;
+
+    XR_CHECK_XRCMD(xrEnumerateViewConfigurations(
+        Computer->Instance.Get(),
+        Headset->SystemId,
+        0,
+        &view_config_count,
+        nullptr));
+
+    std::vector<XrViewConfigurationType> view_configs(view_config_count);
+
+    XR_CHECK_XRCMD(xrEnumerateViewConfigurations(
+        Computer->Instance.Get(),
+        Headset->SystemId,
+        view_config_count,
+        &view_config_count,
+        view_configs.data()));
+    CORE_DEBUG_ASSERT(view_config_count == view_configs.size());
+
+    Rendering->ViewConfigurationType = XR_VIEW_CONFIGURATION_TYPE_PRIMARY_MONO;
+
+    Logger.Info("Supports ", view_config_count, " view configurations:");
+    for (auto config : view_configs)
+    {
+        switch (config)
+        {
+        case XR_VIEW_CONFIGURATION_TYPE_PRIMARY_MONO:
+            Logger.Info(" * Mono");
+            break;
+        case XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO:
+            Logger.Info(" * Stereo (Selected)");
+            Rendering->ViewConfigurationType = XR_VIEW_CONFIGURATION_TYPE_PRIMARY_STEREO;
+            break;
+        case XR_VIEW_CONFIGURATION_TYPE_PRIMARY_QUAD_VARJO:
+            Logger.Info(" * Quad-Varjo");
+            break;
+        default:
+            Logger.Info(" * Unknown #", config);
+            break;
+        }
+    }
+
+    XrViewConfigurationProperties view_config_props{ XR_TYPE_VIEW_CONFIGURATION_PROPERTIES };
+    XR_CHECK_XRCMD(xrGetViewConfigurationProperties(
+        Computer->Instance.Get(),
+        Headset->SystemId,
+        Rendering->ViewConfigurationType,
+        &view_config_props));
+    if (view_config_props.fovMutable) {
+        Logger.Info(" * FOV may change between frames for selected view type");
+    }
+    else {
+        Logger.Info(" * FOV will NOT change between frames for selected view type");
     }
 
     // Get adapter information:
