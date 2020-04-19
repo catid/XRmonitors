@@ -1,5 +1,5 @@
 # XRmonitors
-### User-Friendly Virtual Multi-Monitors for the Workplace
+### ![Logo](https://github.com/catid/XRmonitors/raw/master/art/XRmonitorsLogo/32w/32x32_FAVICON.png "Logo") User-Friendly Virtual Multi-Monitors for the Workplace
 
 Provides Virtual Monitors on Microsoft Windows 10 Mixed Reality Headsets such as the HP Reverb.
 
