@@ -4,7 +4,41 @@ Provides Virtual Monitors on Microsoft Windows 10 Mixed Reality Headsets such as
 
 Uses OpenXR: No need to install from a game store like Oculus/Steam.
 
-Key product features:
+![alt text](https://github.com/catid/XRmonitors/raw/master/preview.png "XRmonitors Preview")
+
+
+## License Restrictions
+
+This software is free for individual use but not for business use with more than 50 employees.
+Feel free to make modifications to the software that are not for re-sale.
+Please contact support@xrmonitors.com for inquiries.
+
+
+## Setup Instructions
+
+Plug in your HP Reverb headset.
+
+Verify that the Windows Mixed Reality Portal environment works.
+
+Double-click the installer and accept our certificate.
+
+The application will prompt if you need to install any Microsoft Upgrades to use OpenXR.
+
+Enable the virtual monitors in the application, and don the headset.
+
+You should see pass-through cameras of the real world, and your desktop monitors.
+If you install an HDMI dongle like the "Headless Ghost" then those private monitors will also be visible.
+
+You can use your keyboard and mouse as usual.
+
+By default you can press CTRL+` to recenter the screens on your mouse cursor.
+You can press CTRL+PGUP to increase monitor size, and CTRL+PGDOWN to decrease.
+Please see the application for other shortcut keys that can be assigned.
+
+Enjoy your new virtual monitors!
+
+
+## Key product features
 
 - Is an essential add-on for the HP Reverb headset
 - Allows you to use your familiar keyboard, mouse, tablet, and applications
@@ -24,28 +58,6 @@ Key product features:
 - Allows the user to customize the physical size, DPI of their monitor
 - Finally, no bezel between side by side monitors
 - Blue light filter mode
-
-
-## License Restrictions
-
-This software is free for individual use but not for business use with more than 50 employees.
-Business licenses will be available at https://xrmonitors.com in the future.
-
-
-## Install Instructions
-
-Plug in your HP Reverb headset.
-
-Verify that the Windows Mixed Reality Portal environment works.
-
-Double-click the installer and accept our certificate.
-
-The application will prompt if you need to install any Microsoft Upgrades to use OpenXR.
-
-
-## Open Source License
-
-
 
 
 ## Build Instructions

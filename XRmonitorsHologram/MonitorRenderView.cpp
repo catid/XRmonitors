@@ -511,7 +511,7 @@ constexpr char kCylinderVertexShaderHlsl[] = R"_(
 
 constexpr char kCylinderPixelShaderHlsl[] = R"_(
     cbuffer ColorConstantBuffer : register(b0) {
-        float4 ColorAdjust;
+        float4 ColorAdjust; // Unused
     };
 
     // "sample" enables SSAA
@@ -525,9 +525,10 @@ constexpr char kCylinderPixelShaderHlsl[] = R"_(
 
     float4 MainPS(PSVertex input) : SV_TARGET {
         float4 color = shaderTexture.Sample(SampleType, input.Tex);
-        color.r *= ColorAdjust.x;
-        color.g *= ColorAdjust.y;
-        color.b *= ColorAdjust.z;
+        // Fix gamma
+        color.r = pow(color.r, 2.2);
+        color.g = pow(color.g, 2.2);
+        color.b = pow(color.b, 2.2);
         return color;
     }
 )_";
