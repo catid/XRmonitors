@@ -5,6 +5,8 @@ Provides Virtual Monitors on Microsoft Windows 10 Mixed Reality Headsets such as
 
 Uses OpenXR: No need to install from a game store like Oculus/Steam.
 
+Download now: ![https://github.com/catid/XRmonitors/releases](https://github.com/catid/XRmonitors/releases)
+
 ![alt text](https://github.com/catid/XRmonitors/raw/master/preview.png "XRmonitors Preview")
 
 
