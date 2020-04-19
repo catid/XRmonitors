@@ -1,0 +1,370 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C744BD74-27D4-4E59-83C8-DAF16B9CB7E1}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>XRmonitorsUI</RootNamespace>
+    <AssemblyName>XRmonitorsUI</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\x86\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\x86\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>XRmonitorsUI.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>XRmonitors_SQUAREICON.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\..\bin\x86_64\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\bin\x86_64\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AboutBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AboutBox.Designer.cs">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="altpcgi.cs" />
+    <Compile Include="DemoExpired.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DemoExpired.Designer.cs">
+      <DependentUpon>DemoExpired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OpenXrNeeded.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OpenXrNeeded.Designer.cs">
+      <DependentUpon>OpenXrNeeded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Registration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Registration.Designer.cs">
+      <DependentUpon>Registration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportIssue.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportIssue.Designer.cs">
+      <DependentUpon>ReportIssue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ValidateLicense.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.Threading, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Threading.16.0.102\lib\net46\Microsoft.VisualStudio.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Utilities, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Utilities.16.1.28917.181\lib\net46\Microsoft.VisualStudio.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.Validation, Version=15.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.VisualStudio.Validation.15.3.15\lib\net45\Microsoft.VisualStudio.Validation.dll</HintPath>
+    </Reference>
+    <Reference Include="Nerdbank.Streams, Version=2.1.0.0, Culture=neutral, PublicKeyToken=cac503e1823ce71c, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Nerdbank.Streams.2.1.37\lib\net46\Nerdbank.Streams.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="StreamJsonRpc, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\StreamJsonRpc.2.0.167\lib\net46\StreamJsonRpc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Buffers.4.5.0\lib\netstandard1.1\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.IO.Pipelines, Version=4.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.IO.Pipelines.4.5.3\lib\netstandard1.3\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Memory.4.5.2\lib\netstandard1.1\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=4.1.1.2, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebSockets, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Net.WebSockets.4.3.0\lib\net46\System.Net.WebSockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.5.2\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net46\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net46\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.5.2\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\netstandard1.0\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="AboutBox.resx">
+      <DependentUpon>AboutBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DemoExpired.resx">
+      <DependentUpon>DemoExpired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OpenXrNeeded.resx">
+      <DependentUpon>OpenXrNeeded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Registration.resx">
+      <DependentUpon>Registration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportIssue.resx">
+      <DependentUpon>ReportIssue.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Resources\400x400_SQUARE ICON.png" />
+    <None Include="Resources\400x400_FAVICON.png" />
+    <None Include="Resources\OpenXR_logo.png" />
+    <Content Include="XRmonitors_SQUAREICON.ico" />
+    <None Include="app.manifest" />
+    <None Include="Resources\NumPad1.png" />
+    <None Include="Resources\NumPad2.png" />
+    <None Include="Resources\NumPad3.png" />
+    <None Include="Resources\NumPad0.png" />
+    <None Include="Resources\Decimal.png" />
+    <None Include="Resources\NumPad6.png" />
+    <None Include="Resources\NumPad5.png" />
+    <None Include="Resources\NumPad4.png" />
+    <None Include="Resources\NumPad9.png" />
+    <None Include="Resources\NumPad8.png" />
+    <None Include="Resources\add.png" />
+    <None Include="Resources\subtract.png" />
+    <None Include="Resources\NumPad7.png" />
+    <None Include="Resources\multiply.png" />
+    <None Include="Resources\divide.png" />
+    <None Include="Resources\apps.png" />
+    <None Include="Resources\plus.png" />
+    <None Include="Resources\love_key.png" />
+    <None Include="Resources\3.png" />
+    <None Include="Resources\2.png" />
+    <None Include="Resources\1.png" />
+    <None Include="Resources\0.png" />
+    <None Include="Resources\comma-lt.png" />
+    <None Include="Resources\comma.png" />
+    <None Include="Resources\capslock.png" />
+    <None Include="Resources\c.png" />
+    <None Include="Resources\bracket-open.png" />
+    <None Include="Resources\bracket-close.png" />
+    <None Include="Resources\backspace.png" />
+    <None Include="Resources\backslash.png" />
+    <None Include="Resources\b.png" />
+    <None Include="Resources\apostroph.png" />
+    <None Include="Resources\alt-right.png" />
+    <None Include="Resources\alt.png" />
+    <None Include="Resources\a.png" />
+    <None Include="Resources\9.png" />
+    <None Include="Resources\8.png" />
+    <None Include="Resources\7.png" />
+    <None Include="Resources\6.png" />
+    <None Include="Resources\5.png" />
+    <None Include="Resources\4.png" />
+    <None Include="Resources\j.png" />
+    <None Include="Resources\insert.png" />
+    <None Include="Resources\i.png" />
+    <None Include="Resources\home.png" />
+    <None Include="Resources\h.png" />
+    <None Include="Resources\g.png" />
+    <None Include="Resources\f12.png" />
+    <None Include="Resources\f11.png" />
+    <None Include="Resources\f10.png" />
+    <None Include="Resources\f9.png" />
+    <None Include="Resources\f8.png" />
+    <None Include="Resources\f7.png" />
+    <None Include="Resources\f6.png" />
+    <None Include="Resources\f5.png" />
+    <None Include="Resources\f4.png" />
+    <None Include="Resources\f3.png" />
+    <None Include="Resources\f2.png" />
+    <None Include="Resources\f1.png" />
+    <None Include="Resources\f.png" />
+    <None Include="Resources\esc.png" />
+    <None Include="Resources\equals-plus.png" />
+    <None Include="Resources\enter.png" />
+    <None Include="Resources\end.png" />
+    <None Include="Resources\e.png" />
+    <None Include="Resources\delete.png" />
+    <None Include="Resources\d.png" />
+    <None Include="Resources\cursor-up.png" />
+    <None Include="Resources\cursor-right.png" />
+    <None Include="Resources\cursor-left.png" />
+    <None Include="Resources\cursor-down.png" />
+    <None Include="Resources\ctrl-2.png" />
+    <None Include="Resources\ctrl.png" />
+    <None Include="Resources\keypad-4.png" />
+    <None Include="Resources\keypad-3.png" />
+    <None Include="Resources\keypad-2.png" />
+    <None Include="Resources\keypad-1.png" />
+    <None Include="Resources\keypad-0.png" />
+    <None Include="Resources\k.png" />
+    <None Include="Resources\keypad-plus.png" />
+    <None Include="Resources\keypad-period.png" />
+    <None Include="Resources\keypad-minus.png" />
+    <None Include="Resources\keypad-enter.png" />
+    <None Include="Resources\keypad-asterix.png" />
+    <None Include="Resources\keypad-9.png" />
+    <None Include="Resources\keypad-8.png" />
+    <None Include="Resources\keypad-7.png" />
+    <None Include="Resources\keypad-6.png" />
+    <None Include="Resources\keypad-5.png" />
+    <None Include="Resources\slash-questionmark.png" />
+    <None Include="Resources\shift-right.png" />
+    <None Include="Resources\shift.png" />
+    <None Include="Resources\semicolon-dble.png" />
+    <None Include="Resources\scroll-lock.png" />
+    <None Include="Resources\s.png" />
+    <None Include="Resources\r.png" />
+    <None Include="Resources\q.png" />
+    <None Include="Resources\print.png" />
+    <None Include="Resources\period-gt.png" />
+    <None Include="Resources\pause.png" />
+    <None Include="Resources\page-up.png" />
+    <None Include="Resources\page-down.png" />
+    <None Include="Resources\p.png" />
+    <None Include="Resources\o.png" />
+    <None Include="Resources\num-lock.png" />
+    <None Include="Resources\n.png" />
+    <None Include="Resources\minus.png" />
+    <None Include="Resources\m.png" />
+    <None Include="Resources\l.png" />
+    <None Include="Resources\keypad-slash.png" />
+    <None Include="Resources\spacebar.png" />
+    <None Include="Resources\z.png" />
+    <None Include="Resources\y.png" />
+    <None Include="Resources\x.png" />
+    <None Include="Resources\w.png" />
+    <None Include="Resources\v.png" />
+    <None Include="Resources\u.png" />
+    <None Include="Resources\tab.png" />
+    <None Include="Resources\t.png" />
+    <None Include="Resources\right_arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ToggleSwitch\ToggleSwitch.csproj">
+      <Project>{49b88ffa-f02c-4709-ba65-9f8996444ecd}</Project>
+      <Name>ToggleSwitch</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,11 @@
+﻿
+Version 1.1
+-----------
+NEW: BeforeRendering event added to make it easier to customize the renderer properties
+NEW: Style and Renderer added: PlainAndSimple
+UPDATED: Demo app updated with the new features
+
+
+Version 1.0
+------------
+Initial Release

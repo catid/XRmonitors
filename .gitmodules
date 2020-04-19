@@ -1,0 +1,6 @@
+[submodule "DirectXTK"]
+	path = DirectXTK
+	url = git@github.com:catid/DirectXTK.git
+[submodule "smaa"]
+	path = smaa
+	url = https://github.com/iryoku/smaa.git

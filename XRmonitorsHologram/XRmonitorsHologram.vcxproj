@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{1f3dc854-44ae-4ac3-a38b-c9818149aea7}</ProjectGuid>
+    <Keyword>MonitorHologram</Keyword>
+    <RootNamespace>MonitorHologram</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>XRmonitorsHologram</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+    <SpectreMitigation>false</SpectreMitigation>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)bin\x86_64\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)bin\x86_64\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\x86\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\x86\</OutDir>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath)</IncludePath>
+  </PropertyGroup>
+  <ImportGroup Label="ExtensionSettings">
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\ImageContentTask.props" />
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\MeshContentTask.props" />
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\ShaderGraphContentTask.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Link>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+      <AdditionalDependencies>$(ProjectDir)/../SofPro/pcgint64.lib;D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib; windowsapp.lib; user32.lib; shcore.lib; %(AdditionalDependencies); </AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>mincore.lib;kernel32.lib;ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)stdafx.pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(IntermediateOutputPath);$(ProjectDir)../core/include/;$(ProjectDir)../mrcam_client/include/;$(ProjectDir)../protocols/include/;$(ProjectDir)../MsXrLoader/;$(ProjectDir)thirdparty/DirectXTK/Inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /await /std:c++latest  %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_ENABLE_EXTENDED_ALIGNED_STORAGE; _DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <CompileAsManaged>false</CompileAsManaged>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ControlFlowGuard>false</ControlFlowGuard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Link>
+      <AdditionalDependencies>$(ProjectDir)/../SofPro/pcgint64.lib;D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib; windowsapp.lib; user32.lib; shcore.lib; %(AdditionalDependencies); </AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store; $(VCInstallDir)\lib</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>mincore.lib;kernel32.lib;ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)stdafx.pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(IntermediateOutputPath);$(ProjectDir)../core/include/;$(ProjectDir)../mrcam_client/include/;$(ProjectDir)../protocols/include/;$(ProjectDir)../MsXrLoader/;$(ProjectDir)thirdparty/DirectXTK/Inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /await /std:c++latest  %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_ENABLE_EXTENDED_ALIGNED_STORAGE; NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>$(ProjectDir)/../SofPro/pcgint64.lib;D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib;mincore.lib;%(AdditionalDependencies); </AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\amd64; $(VCInstallDir)\lib\amd64</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>kernel32.lib;ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalOptions>/alternatename:WINRT_GetRestrictedErrorInfo=GetRestrictedErrorInfo %(AdditionalOptions)</AdditionalOptions>
+      <GenerateDebugInformation>DebugFull</GenerateDebugInformation>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)stdafx.pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(IntermediateOutputPath);$(ProjectDir)../core/include/;$(ProjectDir)../mrcam_client/include/;$(ProjectDir)../protocols/include/;$(ProjectDir)../MsXrLoader/;$(ProjectDir)thirdparty/DirectXTK/Inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /await /std:c++latest  %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_ENABLE_EXTENDED_ALIGNED_STORAGE; _DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsManaged>false</CompileAsManaged>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <BufferSecurityCheck>true</BufferSecurityCheck>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <ControlFlowGuard>false</ControlFlowGuard>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Link>
+      <AdditionalDependencies>$(ProjectDir)/../SofPro/pcgint64.lib;D3DCompiler.lib;d2d1.lib;d3d11.lib;dxgi.lib;dwrite.lib;windowscodecs.lib;mincore.lib;%(AdditionalDependencies); </AdditionalDependencies>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories); $(VCInstallDir)\lib\store\amd64; $(VCInstallDir)\lib\amd64</AdditionalLibraryDirectories>
+      <IgnoreSpecificDefaultLibraries>kernel32.lib;ole32.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <GenerateWindowsMetadata>false</GenerateWindowsMetadata>
+      <AdditionalOptions>/alternatename:WINRT_GetRestrictedErrorInfo=GetRestrictedErrorInfo %(AdditionalOptions)</AdditionalOptions>
+    </Link>
+    <ClCompile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)stdafx.pch</PrecompiledHeaderOutputFile>
+      <AdditionalIncludeDirectories>$(ProjectDir);$(IntermediateOutputPath);$(ProjectDir)../core/include/;$(ProjectDir)../mrcam_client/include/;$(ProjectDir)../protocols/include/;$(ProjectDir)../MsXrLoader/;$(ProjectDir)thirdparty/DirectXTK/Inc/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalOptions>/bigobj /await /std:c++latest  %(AdditionalOptions)</AdditionalOptions>
+      <PreprocessorDefinitions>_ENABLE_EXTENDED_ALIGNED_STORAGE; NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <CompileAsWinRT>false</CompileAsWinRT>
+      <CompileAsManaged>false</CompileAsManaged>
+      <ControlFlowGuard>false</ControlFlowGuard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <BufferSecurityCheck>false</BufferSecurityCheck>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <OmitFramePointers>true</OmitFramePointers>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="..\SofPro\pcgint.h" />
+    <ClInclude Include="ApplicationSettings.hpp" />
+    <ClInclude Include="CameraCalibration.hpp" />
+    <ClInclude Include="CameraImager.hpp" />
+    <ClInclude Include="CameraRenderer.hpp" />
+    <ClInclude Include="D3D11CrossAdapterDuplication.hpp" />
+    <ClInclude Include="D3D11DuplicationCommon.hpp" />
+    <ClInclude Include="D3D11SameAdapterDuplication.hpp" />
+    <ClInclude Include="D3D11Tools.hpp" />
+    <ClInclude Include="HolographicInputBanner.hpp" />
+    <ClInclude Include="HttpRequester.hpp" />
+    <ClInclude Include="InputWindow.hpp" />
+    <ClInclude Include="KeyboardInput.hpp" />
+    <ClInclude Include="LicenseValidator.hpp" />
+    <ClInclude Include="MonitorChangeWatcher.hpp" />
+    <ClInclude Include="MonitorEnumerator.hpp" />
+    <ClInclude Include="MonitorRenderController.hpp" />
+    <ClInclude Include="MonitorRenderModel.hpp" />
+    <ClInclude Include="MonitorRenderView.hpp" />
+    <ClInclude Include="OpenXrD3D11.hpp" />
+    <ClInclude Include="OpenXrD3D11Swapchains.hpp" />
+    <ClInclude Include="Main.hpp" />
+    <ClInclude Include="MonitorTools.hpp" />
+    <ClInclude Include="openxr\openxr.h" />
+    <ClInclude Include="openxr\openxr_platform.h" />
+    <ClInclude Include="openxr\openxr_platform_defines.h" />
+    <ClInclude Include="Plugins.hpp" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="thirdparty\IncludeAsio.h" />
+    <ClInclude Include="thirdparty\INI.h" />
+    <ClInclude Include="thirdparty\json.hpp" />
+    <ClInclude Include="thirdparty\WinReg.hpp" />
+    <ClInclude Include="WindowsHolographic.hpp" />
+    <ClInclude Include="XrUtility\XrError.h" />
+    <ClInclude Include="XrUtility\XrHandle.h" />
+    <ClInclude Include="XrUtility\XrMath.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="ApplicationSettings.cpp" />
+    <ClCompile Include="CameraCalibration.cpp" />
+    <ClCompile Include="CameraImager.cpp" />
+    <ClCompile Include="CameraRenderer.cpp" />
+    <ClCompile Include="D3D11CrossAdapterDuplication.cpp" />
+    <ClCompile Include="D3D11DuplicationCommon.cpp" />
+    <ClCompile Include="D3D11SameAdapterDuplication.cpp" />
+    <ClCompile Include="D3D11Tools.cpp" />
+    <ClCompile Include="HolographicInputBanner.cpp" />
+    <ClCompile Include="HttpRequester.cpp" />
+    <ClCompile Include="InputWindow.cpp" />
+    <ClCompile Include="KeyboardInput.cpp" />
+    <ClCompile Include="LicenseValidator.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MonitorChangeWatcher.cpp" />
+    <ClCompile Include="MonitorEnumerator.cpp" />
+    <ClCompile Include="MonitorRenderController.cpp" />
+    <ClCompile Include="MonitorRenderModel.cpp" />
+    <ClCompile Include="MonitorTools.cpp" />
+    <ClCompile Include="MonitorRenderView.cpp" />
+    <ClCompile Include="OpenXrD3D11.cpp" />
+    <ClCompile Include="OpenXrD3D11Swapchains.cpp" />
+    <ClCompile Include="Plugins.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="WindowsHolographic.cpp" />
+    <ClCompile Include="XrUtility\XrError.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\core\msvc\CoreLib.vcxproj">
+      <Project>{7e3aa4a7-856d-4211-9fa0-3292037cb11e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\DirectXTK\DirectXTK_Desktop_2019_Win10.vcxproj">
+      <Project>{e0b52ae7-e160-4d32-bf3f-910b785e5a8e}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\mrcam_client\msvc\MrCamClient.vcxproj">
+      <Project>{9cc3ffcb-6834-43ba-a3c5-8f4c8bed8363}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\protocols\msvc\Protocols.vcxproj">
+      <Project>{ee88b3f5-85e0-459c-84f4-920345ee8c90}</Project>
+    </ProjectReference>
+    <ProjectReference Include="MsXrLoader\openxr_loader_win32.vcxproj">
+      <Project>{f5627a09-bb7f-4ceb-b178-66762f92773a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="XRmonitorsHologram1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\art\XRmonitors_SQUAREICON.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="camera_calibration.ini" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\ImageContentTask.targets" />
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\MeshContentTask.targets" />
+    <Import Project="$(VSINSTALLDIR)\Common7\IDE\Extensions\Microsoft\VsGraphics\ShaderGraphContentTask.targets" />
+  </ImportGroup>
+</Project>

@@ -1,0 +1,117 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="XrUtility\XrError.cpp">
+      <Filter>XrUtility</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraCalibration.cpp" />
+    <ClCompile Include="MonitorEnumerator.cpp" />
+    <ClCompile Include="MonitorChangeWatcher.cpp" />
+    <ClCompile Include="D3D11Tools.cpp" />
+    <ClCompile Include="HolographicInputBanner.cpp" />
+    <ClCompile Include="MonitorRenderController.cpp" />
+    <ClCompile Include="MonitorRenderModel.cpp" />
+    <ClCompile Include="ApplicationSettings.cpp" />
+    <ClCompile Include="OpenXrD3D11Swapchains.cpp" />
+    <ClCompile Include="MonitorRenderView.cpp" />
+    <ClCompile Include="MonitorTools.cpp" />
+    <ClCompile Include="OpenXrD3D11.cpp" />
+    <ClCompile Include="CameraRenderer.cpp" />
+    <ClCompile Include="CameraImager.cpp" />
+    <ClCompile Include="WindowsHolographic.cpp" />
+    <ClCompile Include="D3D11DuplicationCommon.cpp" />
+    <ClCompile Include="D3D11CrossAdapterDuplication.cpp" />
+    <ClCompile Include="D3D11SameAdapterDuplication.cpp" />
+    <ClCompile Include="KeyboardInput.cpp" />
+    <ClCompile Include="HttpRequester.cpp" />
+    <ClCompile Include="LicenseValidator.cpp" />
+    <ClCompile Include="Plugins.cpp" />
+    <ClCompile Include="InputWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="openxr\openxr.h">
+      <Filter>openxr</Filter>
+    </ClInclude>
+    <ClInclude Include="openxr\openxr_platform.h">
+      <Filter>openxr</Filter>
+    </ClInclude>
+    <ClInclude Include="openxr\openxr_platform_defines.h">
+      <Filter>openxr</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\INI.h">
+      <Filter>thirdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="Main.hpp" />
+    <ClInclude Include="XrUtility\XrError.h">
+      <Filter>XrUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="XrUtility\XrHandle.h">
+      <Filter>XrUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="XrUtility\XrMath.h">
+      <Filter>XrUtility</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraCalibration.hpp" />
+    <ClInclude Include="MonitorChangeWatcher.hpp" />
+    <ClInclude Include="MonitorEnumerator.hpp" />
+    <ClInclude Include="D3D11Tools.hpp" />
+    <ClInclude Include="HolographicInputBanner.hpp" />
+    <ClInclude Include="MonitorRenderController.hpp" />
+    <ClInclude Include="MonitorRenderModel.hpp" />
+    <ClInclude Include="thirdparty\WinReg.hpp">
+      <Filter>thirdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="ApplicationSettings.hpp" />
+    <ClInclude Include="OpenXrD3D11Swapchains.hpp" />
+    <ClInclude Include="MonitorRenderView.hpp" />
+    <ClInclude Include="MonitorTools.hpp" />
+    <ClInclude Include="OpenXrD3D11.hpp" />
+    <ClInclude Include="CameraRenderer.hpp" />
+    <ClInclude Include="CameraImager.hpp" />
+    <ClInclude Include="WindowsHolographic.hpp" />
+    <ClInclude Include="D3D11DuplicationCommon.hpp" />
+    <ClInclude Include="D3D11CrossAdapterDuplication.hpp" />
+    <ClInclude Include="D3D11SameAdapterDuplication.hpp" />
+    <ClInclude Include="KeyboardInput.hpp" />
+    <ClInclude Include="HttpRequester.hpp" />
+    <ClInclude Include="thirdparty\IncludeAsio.h">
+      <Filter>thirdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="LicenseValidator.hpp" />
+    <ClInclude Include="..\SofPro\pcgint.h">
+      <Filter>SofPro</Filter>
+    </ClInclude>
+    <ClInclude Include="thirdparty\json.hpp">
+      <Filter>thirdparty</Filter>
+    </ClInclude>
+    <ClInclude Include="Plugins.hpp" />
+    <ClInclude Include="InputWindow.hpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="XrUtility">
+      <UniqueIdentifier>{64da9cec-ccde-4dec-bb7d-ef4b0409b129}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="openxr">
+      <UniqueIdentifier>{e3a149f9-123c-465e-96d2-c2f422fea433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="thirdparty">
+      <UniqueIdentifier>{9e44c0b8-3ab8-42f1-a2cd-a5af1aba2bae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="SofPro">
+      <UniqueIdentifier>{dfce0ed2-1701-4b18-b1ee-ad00cb98313e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="XRmonitorsHologram1.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\art\XRmonitors_SQUAREICON.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="camera_calibration.ini" />
+  </ItemGroup>
+</Project>

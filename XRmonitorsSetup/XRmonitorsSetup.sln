@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRmonitorsSetup", "XRmonitorsSetup\XRmonitorsSetup.csproj", "{046D5CD7-AE51-4B52-9127-C832596DC102}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XRmonitorsInstaller", "XRmonitorsInstaller\XRmonitorsInstaller.csproj", "{2FD30540-E375-4955-AD49-38C10B3EBCF1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{046D5CD7-AE51-4B52-9127-C832596DC102}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{046D5CD7-AE51-4B52-9127-C832596DC102}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{046D5CD7-AE51-4B52-9127-C832596DC102}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{046D5CD7-AE51-4B52-9127-C832596DC102}.Debug|x64.Build.0 = Debug|Any CPU
+		{046D5CD7-AE51-4B52-9127-C832596DC102}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{046D5CD7-AE51-4B52-9127-C832596DC102}.Release|Any CPU.Build.0 = Release|Any CPU
+		{046D5CD7-AE51-4B52-9127-C832596DC102}.Release|x64.ActiveCfg = Release|Any CPU
+		{046D5CD7-AE51-4B52-9127-C832596DC102}.Release|x64.Build.0 = Release|Any CPU
+		{2FD30540-E375-4955-AD49-38C10B3EBCF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FD30540-E375-4955-AD49-38C10B3EBCF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FD30540-E375-4955-AD49-38C10B3EBCF1}.Debug|x64.ActiveCfg = Debug|x64
+		{2FD30540-E375-4955-AD49-38C10B3EBCF1}.Debug|x64.Build.0 = Debug|x64
+		{2FD30540-E375-4955-AD49-38C10B3EBCF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FD30540-E375-4955-AD49-38C10B3EBCF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FD30540-E375-4955-AD49-38C10B3EBCF1}.Release|x64.ActiveCfg = Release|x64
+		{2FD30540-E375-4955-AD49-38C10B3EBCF1}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C38BF702-DEC5-4B59-B505-B15C20877D85}
+	EndGlobalSection
+EndGlobal

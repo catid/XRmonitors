@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="..\src\core.cpp" />
+    <ClCompile Include="..\src\core_logger.cpp" />
+    <ClCompile Include="..\src\core_mmap.cpp" />
+    <ClCompile Include="..\src\core_serializer.cpp" />
+    <ClCompile Include="..\src\core_string.cpp" />
+    <ClCompile Include="..\src\core_win32.cpp" />
+    <ClCompile Include="..\src\core_win32_pipe.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\core.hpp" />
+    <ClInclude Include="..\include\core_bit_math.hpp" />
+    <ClInclude Include="..\include\core_counter_math.hpp" />
+    <ClInclude Include="..\include\core_logger.hpp" />
+    <ClInclude Include="..\include\core_mmap.hpp" />
+    <ClInclude Include="..\include\core_serializer.hpp" />
+    <ClInclude Include="..\include\core_string.hpp" />
+    <ClInclude Include="..\include\core_win32.hpp" />
+    <ClInclude Include="..\include\core_win32_pipe.hpp" />
+  </ItemGroup>
+</Project>
