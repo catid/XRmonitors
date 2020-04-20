@@ -7,6 +7,8 @@ Uses OpenXR: No need to install from a game store like Oculus/Steam.
 
 Download now: [https://github.com/catid/XRmonitors/releases](https://github.com/catid/XRmonitors/releases)
 
+Quick demo video of the software here: [https://youtu.be/qJwx2zbR5-c](https://youtu.be/qJwx2zbR5-c)
+
 ![alt text](https://github.com/catid/XRmonitors/raw/master/preview.png "XRmonitors Preview")
 
 
