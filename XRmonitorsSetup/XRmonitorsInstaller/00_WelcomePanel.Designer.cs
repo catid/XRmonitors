@@ -114,7 +114,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(699, 37);
             this.label2.TabIndex = 19;
-            this.label2.Text = "Optimal Virtual Multi-Monitors for the Workplace";
+            this.label2.Text = "User-Friendly Virtual Multi-Monitors for the Workplace";
             // 
             // label3
             // 

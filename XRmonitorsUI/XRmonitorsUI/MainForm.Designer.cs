@@ -272,7 +272,7 @@
             this.checkBlue.Name = "checkBlue";
             this.checkBlue.Size = new System.Drawing.Size(582, 43);
             this.checkBlue.TabIndex = 13;
-            this.checkBlue.Text = "Ergonomics: Blue light reduction filter";
+            this.checkBlue.Text = "Ergonomics: Blue-light reduction filter";
             this.checkBlue.UseVisualStyleBackColor = true;
             this.checkBlue.CheckedChanged += new System.EventHandler(this.CheckBlue_CheckedChanged);
             // 
@@ -415,7 +415,7 @@
             this.groupBox1.Size = new System.Drawing.Size(751, 171);
             this.groupBox1.TabIndex = 13;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Shortcut: Alternative Incease Size";
+            this.groupBox1.Text = "Shortcut: Alternative Increase Size";
             // 
             // panelAltIncrease
             // 
