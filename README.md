@@ -1,8 +1,13 @@
-# XRmonitors
+# ![Logo](https://github.com/catid/XRmonitors/raw/master/art/XRmonitorsLogo/32w/32x32_FAVICON.png "Logo") XRmonitors
+### User-Friendly Virtual Multi-Monitors for the Workplace
 
-Provides Virtual Monitors on Microsoft Windows 10 Mixed Reality Headsets such as the HP Reverb.
+Provides Virtual Monitors for owners of Microsoft Windows 10 Mixed Reality Headsets such as the HP Reverb.
 
 Uses OpenXR: No need to install from a game store like Oculus/Steam.
+
+Download now: [https://github.com/catid/XRmonitors/releases](https://github.com/catid/XRmonitors/releases)
+
+Quick demo video of the software here: [https://youtu.be/qJwx2zbR5-c](https://youtu.be/qJwx2zbR5-c)
 
 ![alt text](https://github.com/catid/XRmonitors/raw/master/preview.png "XRmonitors Preview")
 
