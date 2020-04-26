@@ -511,7 +511,7 @@ constexpr char kCylinderVertexShaderHlsl[] = R"_(
 
 constexpr char kCylinderPixelShaderHlsl[] = R"_(
     cbuffer ColorConstantBuffer : register(b0) {
-        float4 ColorAdjust; // Unused
+        float4 ColorAdjust; // For blue light reduction feature
     };
 
     // "sample" enables SSAA
@@ -528,7 +528,7 @@ constexpr char kCylinderPixelShaderHlsl[] = R"_(
         // Fix gamma
         color.r = pow(abs(color.r), 2.2);
         color.g = pow(abs(color.g), 2.2);
-        color.b = pow(abs(color.b), 2.2);
+        color.b = pow(abs(color.b * ColorAdjust.b), 2.2);
         return color;
     }
 )_";
