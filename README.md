@@ -36,8 +36,8 @@ If you install an HDMI dongle like the "Headless Ghost" then those private monit
 
 You can use your keyboard and mouse as usual.
 
-By default you can press CTRL+` to recenter the screens on your mouse cursor.
-You can press CTRL+PGUP to increase monitor size, and CTRL+PGDOWN to decrease.
+By default you can press Win+` to recenter the screens on your mouse cursor.
+You can press Win+PgUp to increase monitor size, and Win+PgDown to decrease.
 Please see the application for other shortcut keys that can be assigned.
 
 Enjoy your new virtual monitors!
@@ -50,7 +50,7 @@ Enjoy your new virtual monitors!
 - Pass-through cameras allow you to see and interact with the world as normal
 - Allows you to work with privacy and focus on the task at hand without distractions
 - Bring multiple-monitor setups anywhere with you with your laptop
-- Works with MacBook and Windows laptops without GPUs
+- Works with MacBook and Windows laptops with GPUs
 - Allows the user to recline while using their computer
 - Full access to multiple monitors while on a couch or lawn chair - Solves back strain!
 - Places content at a 1.34 meter distance from the user for eye comfort
@@ -76,7 +76,7 @@ cd XRmonitors
 git submodule update --init --recursive
 ```
 
-Generate your own private key to sign the installer and place it under signing/DigiCertPrivateKey.pfx
+Generate your own key pair to sign the installer and place it under `signing/DigiCertPrivateKey.pfx`
 
 ```
 Open XRmonitors.sln with Visual Studio 2019
