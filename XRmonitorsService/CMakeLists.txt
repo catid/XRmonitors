@@ -6,6 +6,7 @@ project(mrcam_server LANGUAGES CXX)
 
 set(INCLUDE_FILES
     src/CameraServer.hpp
+    src/UsbHubPowerFix.hpp
 )
 
 set(SOURCE_FILES
@@ -13,6 +14,7 @@ set(SOURCE_FILES
     src/CameraServer.cpp
     src/RemoteProcess.hpp
     src/RemoteProcess.cpp
+    src/UsbHubPowerFix.cpp
     src/server_main.cpp
 )
 
