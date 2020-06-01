@@ -50,7 +50,7 @@ endif()
 ################################################################################
 # Dependencies
 
-include_directories(include)
+include_directories(include thirdparty/hidapi)
 
 if(NOT TARGET core)
     add_subdirectory(../core core)
