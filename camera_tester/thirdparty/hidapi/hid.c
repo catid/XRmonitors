@@ -551,6 +551,63 @@ HID_API_EXPORT hid_device * HID_API_CALL hid_open(unsigned short vendor_id, unsi
 	return handle;
 }
 
+HID_API_EXPORT hid_device * HID_API_CALL hid_open_handle(HANDLE handle)
+{
+	hid_device *dev;
+	HIDP_CAPS caps;
+	PHIDP_PREPARSED_DATA pp_data = NULL;
+	BOOLEAN res;
+	NTSTATUS nt_res;
+
+	if (hid_init() < 0) {
+		return NULL;
+	}
+
+	dev = new_hid_device();
+
+	/* Open a handle to the device */
+	dev->device_handle = handle;
+
+	/* Check validity of write_handle. */
+	if (dev->device_handle == INVALID_HANDLE_VALUE) {
+		/* Unable to open the device. */
+		register_error(dev, "CreateFile");
+		goto err;
+	}
+
+	/* Set the Input Report buffer size to 64 reports. */
+	res = HidD_SetNumInputBuffers(dev->device_handle, 64);
+	if (!res) {
+		register_error(dev, "HidD_SetNumInputBuffers");
+		goto err;
+	}
+
+	/* Get the Input Report length for the device. */
+	res = HidD_GetPreparsedData(dev->device_handle, &pp_data);
+	if (!res) {
+		register_error(dev, "HidD_GetPreparsedData");
+		goto err;
+	}
+	nt_res = HidP_GetCaps(pp_data, &caps);
+	if (nt_res != HIDP_STATUS_SUCCESS) {
+		register_error(dev, "HidP_GetCaps");	
+		goto err_pp_data;
+	}
+	dev->output_report_length = caps.OutputReportByteLength;
+	dev->input_report_length = caps.InputReportByteLength;
+	HidD_FreePreparsedData(pp_data);
+
+	dev->read_buf = (char*) malloc(dev->input_report_length);
+
+	return dev;
+
+err_pp_data:
+		HidD_FreePreparsedData(pp_data);
+err:	
+		free_hid_device(dev);
+		return NULL;
+}
+
 HID_API_EXPORT hid_device * HID_API_CALL hid_open_path(const char *path)
 {
 	hid_device *dev;

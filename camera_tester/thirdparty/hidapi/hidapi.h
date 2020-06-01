@@ -174,6 +174,9 @@ extern "C" {
 		*/
 		HID_API_EXPORT hid_device * HID_API_CALL hid_open_path(const char *path);
 
+        // Hacked on
+		HID_API_EXPORT hid_device * HID_API_CALL hid_open_handle(HANDLE handle);
+
 		/** @brief Write an Output report to a HID device.
 
 			The first byte of @p data[] must contain the Report ID. For

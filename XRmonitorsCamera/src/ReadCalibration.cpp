@@ -1,123 +1,32 @@
 // Copyright 2020 Augmented Perception Corporation
 
-#include <hidapi.h>
-
-#include <core_string.hpp>
-#include <core_logger.hpp>
-using namespace core;
-
-#include <iostream>
-using namespace std;
-
-static logger::Channel Logger("Config");
+#include "ReadCalibration.hpp"
 
 
-typedef enum
-{
-	HOLOLENS_IRQ_SENSORS = 1,
-	HOLOLENS_IRQ_CONTROL = 2,
-	HOLOLENS_IRQ_DEBUG = 3,
+//------------------------------------------------------------------------------
+// Constants and Types
+
+#define MICROSOFT_VID        0x045e
+#define HOLOLENS_SENSORS_PID 0x0659
+
+typedef enum {
+    HOLOLENS_IRQ_SENSORS = 1,
+    HOLOLENS_IRQ_CONTROL = 2,
+    HOLOLENS_IRQ_DEBUG = 3,
 } hololens_sensors_irq_cmd;
 
-static hid_device* open_device_idx(
-    int manufacturer,
-    int product,
-    int iface,
-    int iface_tot,
-    int device_index)
-{
-    struct hid_device_info* devs = hid_enumerate(manufacturer, product);
-    struct hid_device_info* cur_dev = devs;
-
-    int idx = 0;
-    int iface_cur = 0;
-    hid_device* ret = NULL;
-
-    while (cur_dev) {
-        Logger.Info(manufacturer, ":", product, " ", cur_dev->path);
-
-        if (idx == device_index && iface == iface_cur) {
-            Logger.Info("Found!");
-            ret = hid_open_path(cur_dev->path);
-        }
-
-        cur_dev = cur_dev->next;
-
-        iface_cur++;
-
-        if (iface_cur >= iface_tot) {
-            idx++;
-            iface_cur = 0;
-        }
-    }
-
-    hid_free_enumeration(devs);
-    return ret;
-}
-
-static int config_command_sync(
-    hid_device* hmd_imu,
-    unsigned char type,
-    unsigned char* buf,
-    int len)
-{
-    unsigned char cmd[64] = { 0x02, type };
-
-    hid_write(hmd_imu, cmd, sizeof(cmd));
-
-    do {
-        int size = hid_read(hmd_imu, buf, len);
-        if (size == -1) {
-            return -1;
-        }
-        if (buf[0] == HOLOLENS_IRQ_CONTROL) {
-            return size;
-        }
-    } while (buf[0] == HOLOLENS_IRQ_SENSORS || buf[0] == HOLOLENS_IRQ_DEBUG);
-
-    return -1;
-}
-
-int read_config_part(
-    hid_device* hmd_imu,
-    unsigned char type,
-    unsigned char* data,
-    int len)
-{
-    unsigned char buf[33];
-    int offset = 0;
-    int size;
-
-    size = config_command_sync(hmd_imu, 0x0b, buf, sizeof(buf));
-
-    if (size != 33 || buf[0] != 0x02) {
-        Logger.Error("Failed to issue command 0b: ", (int)buf[0], (int)buf[1], (int)buf[2]);
-        return -1;
-    }
-    size = config_command_sync(hmd_imu, type, buf, sizeof(buf));
-    if (size != 33 || buf[0] != 0x02) {
-        Logger.Error("Failed to issue command ", (int)type, ": ", (int)buf[0], (int)buf[1], (int)buf[2]);
-        return -1;
-    }
-    for (;;) {
-        size = config_command_sync(hmd_imu, 0x08, buf, sizeof(buf));
-        if (size != 33 || (buf[1] != 0x01 && buf[1] != 0x02)) {
-            Logger.Error("Failed to issue command 08: ", (int)buf[0], (int)buf[1], (int)buf[2]);
-            return -1;
-        }
-        if (buf[1] != 0x01) {
-            break;
-        }
-        if (buf[2] > len || offset + buf[2] > len) {
-            Logger.Error("Getting more information then requested");
-            return -1;
-        }
-        memcpy(data + offset, buf + 3, buf[2]);
-        offset += buf[2];
-    }
-
-    return offset;
-}
+typedef struct {
+        uint32_t json_start;
+        uint32_t json_size;
+        char manufacturer[0x40];
+        char device[0x40];
+        char serial[0x40];
+        char uid[0x26];
+        char unk[0xd5];
+        char name[0x40];
+        char revision[0x20];
+        char revision_date[0x20];
+} wmr_config_header;
 
 const uint8_t wmr_config_key[0x400] =
 {
@@ -187,18 +96,195 @@ const uint8_t wmr_config_key[0x400] =
     0x8C, 0xEC, 0xD5, 0x2C, 0x8E, 0xB6, 0x20, 0x8F, 0xA6, 0xB9, 0x86, 0xB8, 0xBA, 0x59, 0xA3, 0xA7
 };
 
-typedef struct {
-        uint32_t json_start;
-        uint32_t json_size;
-        char manufacturer[0x40];
-        char device[0x40];
-        char serial[0x40];
-        char uid[0x26];
-        char unk[0xd5];
-        char name[0x40];
-        char revision[0x20];
-        char revision_date[0x20];
-} wmr_config_header;
+
+//------------------------------------------------------------------------------
+// HID Tools
+
+static int hid_write(HANDLE handle, const unsigned char *data, size_t length)
+{
+    DWORD bytes_written;
+    BOOL res;
+
+    OVERLAPPED ol;
+    unsigned char *buf;
+    memset(&ol, 0, sizeof(ol));
+
+    /* Make sure the right number of bytes are passed to WriteFile. Windows
+       expects the number of bytes which are in the _longest_ report (plus
+       one for the report number) bytes even if the data is a report
+       which is shorter than that. Windows gives us this value in
+       caps.OutputReportByteLength. If a user passes in fewer bytes than this,
+       create a temporary buffer which is the proper size. */
+    if (length >= dev->output_report_length) {
+        /* The user passed the right number of bytes. Use the buffer as-is. */
+        buf = (unsigned char *) data;
+    } else {
+        /* Create a temporary buffer and copy the user's data
+           into it, padding the rest with zeros. */
+        buf = (unsigned char *) malloc(dev->output_report_length);
+        memcpy(buf, data, length);
+        memset(buf + length, 0, dev->output_report_length - length);
+        length = dev->output_report_length;
+    }
+
+    res = WriteFile(handle, buf, length, NULL, &ol);
+    
+    if (!res) {
+        if (GetLastError() != ERROR_IO_PENDING) {
+            /* WriteFile() failed. Return error. */
+            bytes_written = -1;
+            goto end_of_function;
+        }
+    }
+
+    /* Wait here until the write is done. This makes
+       hid_write() synchronous. */
+    res = GetOverlappedResult(handle, &ol, &bytes_written, TRUE/*wait*/);
+    if (!res) {
+        /* The Write operation failed. */
+        bytes_written = -1;
+        goto end_of_function;
+    }
+
+end_of_function:
+    if (buf != data)
+        free(buf);
+
+    return bytes_written;
+}
+
+static int hid_read(HANDLE handle, unsigned char *data, size_t length, int milliseconds)
+{
+    DWORD bytes_read = 0;
+    size_t copy_len = 0;
+    BOOL res;
+
+    /* Copy the handle for convenience. */
+    HANDLE ev = dev->ol.hEvent;
+
+    if (!dev->read_pending) {
+        /* Start an Overlapped I/O read. */
+        dev->read_pending = TRUE;
+        memset(dev->read_buf, 0, dev->input_report_length);
+        ResetEvent(ev);
+        res = ReadFile(handle, dev->read_buf, dev->input_report_length, &bytes_read, &dev->ol);
+        
+        if (!res) {
+            if (GetLastError() != ERROR_IO_PENDING) {
+                /* ReadFile() has failed.
+                   Clean up and return error. */
+                CancelIo(handle);
+                dev->read_pending = FALSE;
+                goto end_of_function;
+            }
+        }
+    }
+
+    if (milliseconds >= 0) {
+        /* See if there is any data yet. */
+        res = WaitForSingleObject(ev, milliseconds);
+        if (res != WAIT_OBJECT_0) {
+            /* There was no data this time. Return zero bytes available,
+               but leave the Overlapped I/O running. */
+            return 0;
+        }
+    }
+
+    /* Either WaitForSingleObject() told us that ReadFile has completed, or
+       we are in non-blocking mode. Get the number of bytes read. The actual
+       data has been copied to the data[] array which was passed to ReadFile(). */
+    res = GetOverlappedResult(handle, &dev->ol, &bytes_read, TRUE/*wait*/);
+    
+    /* Set pending back to false, even if GetOverlappedResult() returned error. */
+    dev->read_pending = FALSE;
+
+    if (res && bytes_read > 0) {
+        if (dev->read_buf[0] == 0x0) {
+            /* If report numbers aren't being used, but Windows sticks a report
+               number (0x0) on the beginning of the report anyway. To make this
+               work like the other platforms, and to make it work more like the
+               HID spec, we'll skip over this byte. */
+            bytes_read--;
+            copy_len = length > bytes_read ? bytes_read : length;
+            memcpy(data, dev->read_buf+1, copy_len);
+        }
+        else {
+            /* Copy the whole buffer, report number and all. */
+            copy_len = length > bytes_read ? bytes_read : length;
+            memcpy(data, dev->read_buf, copy_len);
+        }
+    }
+
+    return copy_len;
+}
+
+
+//------------------------------------------------------------------------------
+// Config Tools
+
+static int config_command_sync(
+    HANDLE handle,
+    unsigned char type,
+    unsigned char* buf,
+    int len)
+{
+    unsigned char cmd[64] = { 0x02, type };
+
+    hid_write(handle, cmd, sizeof(cmd));
+
+    do {
+        int size = hid_read(handle, buf, len);
+        if (size == -1) {
+            return -1;
+        }
+        if (buf[0] == HOLOLENS_IRQ_CONTROL) {
+            return size;
+        }
+    } while (buf[0] == HOLOLENS_IRQ_SENSORS || buf[0] == HOLOLENS_IRQ_DEBUG);
+
+    return -1;
+}
+
+int read_config_part(
+    HANDLE handle,
+    unsigned char type,
+    unsigned char* data,
+    int len)
+{
+    unsigned char buf[33];
+    int offset = 0;
+    int size;
+
+    size = config_command_sync(handle, 0x0b, buf, sizeof(buf));
+
+    if (size != 33 || buf[0] != 0x02) {
+        Logger.Error("Failed to issue command 0b: ", (int)buf[0], (int)buf[1], (int)buf[2]);
+        return -1;
+    }
+    size = config_command_sync(handle, type, buf, sizeof(buf));
+    if (size != 33 || buf[0] != 0x02) {
+        Logger.Error("Failed to issue command ", (int)type, ": ", (int)buf[0], (int)buf[1], (int)buf[2]);
+        return -1;
+    }
+    for (;;) {
+        size = config_command_sync(handle, 0x08, buf, sizeof(buf));
+        if (size != 33 || (buf[1] != 0x01 && buf[1] != 0x02)) {
+            Logger.Error("Failed to issue command 08: ", (int)buf[0], (int)buf[1], (int)buf[2]);
+            return -1;
+        }
+        if (buf[1] != 0x01) {
+            break;
+        }
+        if (buf[2] > len || offset + buf[2] > len) {
+            Logger.Error("Getting more information then requested");
+            return -1;
+        }
+        memcpy(data + offset, buf + 3, buf[2]);
+        offset += buf[2];
+    }
+
+    return offset;
+}
 
 void decrypt_config(unsigned char* config)
 {
@@ -209,12 +295,12 @@ void decrypt_config(unsigned char* config)
     }
 }
 
-bool read_config(hid_device* hmd_imu, std::vector<uint8_t>& result)
+bool read_config(HANDLE handle, std::vector<uint8_t>& result)
 {
     unsigned char meta[84];
     int size, data_size;
 
-    size = read_config_part(hmd_imu, 0x06, meta, sizeof(meta));
+    size = read_config_part(handle, 0x06, meta, sizeof(meta));
     if (size != 84) {
         Logger.Error("read_config_part 6 failed");
         return false;
@@ -226,7 +312,7 @@ bool read_config(hid_device* hmd_imu, std::vector<uint8_t>& result)
     result.resize(data_size + 1);
     uint8_t* data = result.data();
 
-    size = read_config_part(hmd_imu, 0x04, data, data_size);
+    size = read_config_part(handle, 0x04, data, data_size);
     if (size != data_size) {
         Logger.Error("read_config_part 4 failed");
         return false;
@@ -245,45 +331,20 @@ bool read_config(hid_device* hmd_imu, std::vector<uint8_t>& result)
     return true;
 }
 
-#define MICROSOFT_VID        0x045e
-#define HOLOLENS_SENSORS_PID 0x0659
 
-int main(int argc, const char* argv[])
+
+//------------------------------------------------------------------------------
+// API
+
+std::string ReadCalibration(HANDLE handle)
 {
-    (void)argc;
-    (void)argv;
-
-    const int idx = 1;
-
-    static hid_device* hmd_imu = open_device_idx(MICROSOFT_VID, HOLOLENS_SENSORS_PID, 0, 1, idx);
-    if (!hmd_imu) {
-        Logger.Error("open_device_idx failed");
-        return CORE_APP_FAILURE;
+    std::vector<uint8_t> result;
+    if (!read_config(handle, result)) {
+        return "";
     }
+    uint8_t* data = result.data();
 
-    std::vector<uint8_t> config;
-    if (!read_config(hmd_imu, config)) {
-        Logger.Error("read_config failed");
-        return CORE_APP_FAILURE;
-    }
-
-    wmr_config_header* hdr = (wmr_config_header*)config.data();
-    Logger.Info("hdr->manufacturer: ", hdr->manufacturer);
-    Logger.Info("hdr->name: ", hdr->name);
-    Logger.Info("hdr->json_size: ", hdr->json_size);
-    Logger.Info("hdr->json_start: ", hdr->json_start);
-    Logger.Info("hdr->device: ", hdr->device);
-    Logger.Info("hdr->revision: ", hdr->revision);
-    Logger.Info("hdr->revision_date: ", hdr->revision_date);
-    Logger.Info("hdr->serial: ", hdr->serial);
-    Logger.Info("hdr->uid: ", hdr->uid);
-
-    const char* json = (const char*)config.data() + 2 + hdr->json_start;
-    Logger.Info("json: ", json);
-    //Logger.Info("json: ", HexDump((const uint8_t*)json, hdr->json_size));
-
-    std::string s;
-    cin >> s;
-
-    return CORE_APP_SUCCESS;
+    wmr_config_header* hdr = (wmr_config_header*)data;
+    const char* json = reinterpret_cast<const char*>( data + hdr->json_start + 2 );
+    return json;
 }
