@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 project(mrcam_client LANGUAGES CXX)
 
+
 ################################################################################
 # Source
 

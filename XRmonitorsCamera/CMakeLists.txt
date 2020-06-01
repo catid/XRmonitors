@@ -10,6 +10,8 @@ set(INCLUDE_FILES
 set(SOURCE_FILES
     ${INCLUDE_FILES}
     src/implant_main.cpp
+    src/ReadCalibration.hpp
+    src/ReadCalibration.cpp
 )
 
 

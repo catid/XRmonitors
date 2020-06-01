@@ -1,3 +1,5 @@
+// Copyright 2019 Augmented Perception Corporation
+
 #include "CameraClient.hpp"
 #include "core_logger.hpp"
 

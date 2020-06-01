@@ -1,11 +1,20 @@
 cmake_minimum_required(VERSION 3.5)
-project(camera_tester LANGUAGES CXX)
+project(camera_tester LANGUAGES C CXX)
+
 
 ################################################################################
 # Source
 
-set(SOURCE_FILES
+set(TEST_SOURCE_FILES
     src/CameraTester.cpp
+    thirdparty/hidapi/hid.c
+    thirdparty/hidapi/hidapi.h
+)
+
+set(CONFIG_SOURCE_FILES
+    src/CameraConfigTest.cpp
+    thirdparty/hidapi/hid.c
+    thirdparty/hidapi/hidapi.h
 )
 
 
@@ -41,7 +50,7 @@ endif()
 ################################################################################
 # Dependencies
 
-include_directories(include)
+include_directories(include thirdparty/hidapi)
 
 if(NOT TARGET core)
     add_subdirectory(../core core)
@@ -57,10 +66,22 @@ find_package(Threads REQUIRED)
 ################################################################################
 # Targets
 
-add_executable(camera_tester ${SOURCE_FILES})
+# App: camera_tester
+
+add_executable(camera_tester ${TEST_SOURCE_FILES})
 target_link_libraries(camera_tester
     core
     mrcam_client
     Threads::Threads)
 
 install(TARGETS camera_tester DESTINATION bin)
+
+# App: camera_config_test
+
+add_executable(camera_config_test ${CONFIG_SOURCE_FILES})
+target_link_libraries(camera_config_test
+    core
+    Setupapi
+    Threads::Threads)
+
+install(TARGETS camera_config_test DESTINATION bin)

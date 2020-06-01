@@ -1,6 +1,20 @@
 cmake_minimum_required(VERSION 3.5)
 project(protocols LANGUAGES CXX)
 
+
+################################################################################
+# Dependencies
+
+include_directories(include)
+
+if(NOT TARGET core)
+    add_subdirectory(../core core)
+endif()
+
+set(THREADS_PREFER_PTHREAD_FLAG ON)
+find_package(Threads REQUIRED)
+
+
 ################################################################################
 # Source
 
@@ -58,6 +72,9 @@ include_directories(include)
 
 add_library(protocols STATIC ${SOURCE_FILES})
 target_include_directories(protocols PUBLIC include)
+target_link_libraries(protocols
+    core
+    Threads::Threads)
 
 install(TARGETS protocols DESTINATION lib)
 install(FILES ${INCLUDE_FILES} DESTINATION include)
